@@ -60,16 +60,6 @@ var server = http.createServer(function(request, response){
      response.end()
   }
 
-  // response.setHeader('Content-Type', 'text/html; charset=utf-8')
-  // response.write('<!DOCTYPE>\n<html>' +
-  //  '<head><link rel="stylesheet" href="/style">' +
-  //  '</head><body>' +
-  //  '<h1>👉Hello Node.js 你好 👋</h1>' +
-  //  '<script src="/script"></script>' +
-  //  '</body></html>')
-  // response.end()
-
-
 
 
 
