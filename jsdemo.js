@@ -1,7 +1,14 @@
 #!/usr/bin/env node
 var fs = require('fs')
-
 var dirName = process.argv[2] // 你传的参数是从第 2 个开始的
+
+var path = "./" + dirName
+if(fs.existsSync(path))
+{
+  console.log('File already exist！')
+  process.exit(1)
+}
+
 var mainjs =  `var string = "Hello World"
 alert(string)`
 
