@@ -1,0 +1,104 @@
+.clearfix::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+*{
+  outline: dashed #464646 1px;
+}
+body{
+  background: #000000;
+  color: #ffffff;
+  margin: 0;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.topNavBar  {
+  padding: 12px 20px 12px;
+}
+.topNavBar > a {
+  float: left;
+}
+.topNavBar > nav {
+  padding: 4px 0px 1px;
+}
+.topNavBar > nav > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.topNavBar > nav > ul > li {
+  margin: 0px 17px;
+  float: right;
+}
+.topNavBar > nav > ul > li > a {
+  /* margin: 0 17; */
+  /* text-decoration: none; */
+  font-weight: bold;
+  padding: 5px 0px 5px;
+  border-bottom: 3px solid transparent;
+  display: block;
+}
+.topNavBar > nav > ul > li > a:hover {
+  border-bottom: 3px solid #E06567;
+}
+
+
+.topNavBar .logo {
+  font-size: 24px;
+  font-family: "Arial Black";
+  padding: 0px 0px 7px;
+}
+.topNavBar .logo .o {
+  color: #E6686A;
+}
+.topNavBar .logo .siberia {
+  margin:0px 8px 0px;
+  color: #9A9DA2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* // */
