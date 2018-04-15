@@ -4,7 +4,7 @@
   clear: both;
 }
 *{
-  outline: dashed #464646 1px;
+  /* outline: dashed #464646 1px; */
 }
 body{
   background: #000000;
