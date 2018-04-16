@@ -14,58 +14,64 @@
   <!-- <iframe src="./index2" frameborder="0"></iframe> -->
   <!-- <a target="xxx" href="xxx">111</a>
   <a target="./xxx" href="xxx">111</a> -->
-  <div class="topNavBar clearfix">
-    <a class="logo" src="#" alt="logo">
-      <span class="o">o</span><span class="siberia">SIBERIA</span><span class="o">o</span>
-    </a>
-    <nav>
-      <ul class="clearfix">
-        <!-- a[href=#]*5 -->
-        <li><a href="#">关于</a></li>
-        <li><a href="#">技能</a></li>
-        <li><a href="#">作品</a></li>
-        <li><a href="#">博客</a></li>
-        <li><a href="#">日历</a></li>
-        <li><a href="#">联系方式</a></li>
-        <li><a href="#">其他</a></li>
-        <!-- <li><a href="#">OTHER</a></li>
-        <li><a href="#">ALL DEMOS</a></li> -->
-      </ul>
-    </nav>
+  <div class="topNavBar">
+    <div class="topNavBar-inner clearfix">
+      <a class="logo" src="#" alt="logo">
+        <span class="o">o</span><span class="siberia">SIBERIA</span><span class="o">o</span>
+      </a>
+      <nav>
+        <ul class="clearfix">
+          <!-- a[href=#]*5 -->
+          <li><a href="#">关于</a></li>
+          <li><a href="#">技能</a></li>
+          <li><a href="#">作品</a></li>
+          <li><a href="#">博客</a></li>
+          <li><a href="#">日历</a></li>
+          <li><a href="#">联系方式</a></li>
+          <li><a href="#">其他</a></li>
+          <!-- <li><a href="#">OTHER</a></li>
+          <li><a href="#">ALL DEMOS</a></li> -->
+        </ul>
+      </nav>
+    </div>
   </div>
-  <div class="banner" style="background-image: url(#);">
+  <div class="banner">
+    <div class="mask"></div>
+  </div>
     <main>
-      <div class="card">
-        <div class="picture">
-          <img src="#" alt="头像">
-        </div>
-        <div class="profile">
-          <div class="text">
-            <span class="welcome">Hello</span>
-            <h1>西伯利亚</h1>
-            <p>前端开发工程师/UI/UX</p>
-            <hr>
-            <dl>
-              <dt>年龄</dt>
-              <dd>18</dd>
-              <dt>所在城市</dt>
-              <dd>北京</dd>
-              <dt>邮箱</dt>
-              <dd>xiboliya123@foxmail.com</dd>
-              <dt>手机</dt>
-              <dd>18888888888</dd>
-            </dl>
+      <div class="useCard clearfix">
+        <div class="textAndPicture">
+          <div class="picture">
+            <img src="./img/avatar.jpg" width="299" height="347" alt="头像">
           </div>
-          <footer class="media">
-            <!-- a[href=#]*7>img[src=#][alt="..."] -->
-            <a href="#"><img src="#" alt="..."></a>
-            <a href="#"><img src="#" alt="..."></a>
-            <a href="#"><img src="#" alt="..."></a>
-            <a href="#"><img src="#" alt="..."></a>
-            <a href="#"><img src="#" alt="..."></a>
-            <a href="#"><img src="#" alt="..."></a>
-            <a href="#"><img src="#" alt="..."></a>
-          </footer>
+          <div class="text">
+              <span class="welcome">Hello
+                <span class="triangle"></span>
+              </span>
+              <h1>西伯利亚</h1>
+              <p>前端开发工程师/UI/UX</p>
+              <hr>
+              <dl>
+                <dt>年龄</dt>
+                <dd>18</dd>
+                <dt>所在城市</dt>
+                <dd>北京</dd>
+                <dt>邮箱</dt>
+                <dd>xiboliya123@foxmail.com</dd>
+                <dt>手机</dt>
+                <dd>18888888888</dd>
+              </dl>
+            <footer class="media">
+              <!-- a[href=#]*7>img[src=#][alt="..."] -->
+              <a href="#"><img src="#" alt="..."></a>
+              <a href="#"><img src="#" alt="..."></a>
+              <a href="#"><img src="#" alt="..."></a>
+              <a href="#"><img src="#" alt="..."></a>
+              <a href="#"><img src="#" alt="..."></a>
+              <a href="#"><img src="#" alt="..."></a>
+              <a href="#"><img src="#" alt="..."></a>
+            </footer>
+          </div>
         </div>
       </div>
       <a href="#" class="button">下载PDF简历</a>
@@ -98,7 +104,6 @@
          <div class="small"></div>
       </div>
     </section>
-  </div>
 </body>
 </html>
 
