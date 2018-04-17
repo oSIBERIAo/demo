@@ -47,7 +47,7 @@ hr {
 .topNavBar nav > ul {
   list-style: none;
   margin: 0;
-  padding: 0;
+  /* padding: 0; */
 }
 .topNavBar nav > ul > li {
   margin: 0px 17px;
@@ -56,9 +56,10 @@ hr {
 .topNavBar nav > ul > li > a {
   /* margin: 0 17; */
   /* text-decoration: none; */
+  font-size: 12px;
   color: #9A9DA2;
   font-weight: bold;
-  padding: 5px 0px 5px;
+  padding: 8px 0px 2px;
   border-bottom: 3px solid transparent;
   display: block;
 }
@@ -93,7 +94,7 @@ hr {
 }
 
 .useCard {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   max-width: 940px;
   margin: auto;
   background: #FFFFFF;
@@ -132,7 +133,7 @@ hr {
 .useCard .picture {
   float: left;
 }
-.useCard .textAndPicture{
+.useCard .pictureAndText{
   padding: 50px;
 }
 
@@ -168,9 +169,31 @@ hr {
 
 .useCard > footer.media {
   background: #E6686A;
+  text-align: center;
 }
 
+.useCard > footer.media a {
+  /* border: 1px solid black; */
+  border-radius: 50%;
+  width: 40px;
+  line-height: 30px;
+  padding: 5px 0;
+  display: inline-block;
+  margin: 16px;
+  /* vertical-align: top; */
+}
 
+.useCard > footer.media a:hover {
+  background-color: #CF5D5F;
+}
+
+.useCard svg {
+  width: 30px;
+  height: 30px;
+  fill: black;
+  /* margin: 0 30px; */
+  vertical-align: top;
+}
 
 
 
