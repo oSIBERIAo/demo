@@ -162,7 +162,9 @@ hr {
 .useCard dl dt,
 .useCard dl dd{
   float: left;
+  display: block;
   margin: 5px 0;
+  line-height: 22px;
 }
 
 .useCard dl dt{
