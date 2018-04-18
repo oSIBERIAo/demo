@@ -358,6 +358,7 @@ section.protfolio >nav .bar.state-3  div.bar-inner {
 } */
 section.protfolio > div.works {
   position: absolute;
+  margin: 0 0 130px;
 }
 
 section.protfolio > div.works .big,
@@ -365,9 +366,9 @@ section.protfolio > div.works .small {
   position: absolute;
 }
 
-body > div.black {
+/* body > div.black {
   margin: 100px 0 0;
-}
+} */
 
 
 
