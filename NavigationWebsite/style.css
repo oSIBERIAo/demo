@@ -1,0 +1,74 @@
+
+*{
+  outline: dashed #ffe9e9 1px;
+}
+main > div {
+  padding-top: 15em;
+  /* border-top: 300px solid white; */
+}
+main > div > div > kbd {
+    border: 1px solid red;
+    width: 4em;
+    height: 4em;
+    line-height: 4em;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+    display: inline-block;
+    text-transform: uppercase;
+    position: relative;
+  }
+
+main > div > div > kbd > button {
+    position: absolute;
+    margin-top: 31px;
+    display: none;
+  }
+
+kbd:hover > button {
+    display: inline-block;
+  }
+  
+main > div > div {
+  text-align: center;
+  padding-top: 2em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* kbd {
+    border: 1px solid red;
+  } */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
