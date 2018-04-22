@@ -16,37 +16,30 @@ if (hashInLocalStorage) {
    hash = hashInLocalStorage
 }
 
-
-
-index = 0
-while (index < keys['length']) {
+for (var i = 0; i < keys.length; i++) {
   divX = document.createElement('div')
   mainX.appendChild(divX)
-  index2 = 0
-  row = keys[index]
-  while (index2 < keys[index]['length']) {
-    console.log('keys', keys['length']);
-    kbd = document.createElement('kbd')
-    kbd.textContent = row[index2]
+  var row = keys[i]
+  for (var j = 0; j < row.length; j++) {
+    kbdX = document.createElement('kbd')
+    kbdX.textContent = row[j]
+    divX.appendChild(kbdX)
     buttonX = document.createElement('button')
     buttonX.textContent = 'E'
-    buttonX.id = row[index2]
-    buttonX.onclick = function(keyboard) {
-      console.log('点击了一个按键')
-      console.log(keyboard.target.id)
+    buttonX.id = row[j]
+    kbdX.appendChild(buttonX)
+    buttonX.onclick = function(keyboard){
+      console.log('点到了')
       console.log(keyboard)
+      console.log('keyboard.target.id', keyboard.target.id)
       key = keyboard.target.id
       Site = prompt('请输入网址')
       hash[key] = Site
-      console.log('hash', hash);
       localStorage.setItem('localHash', JSON.stringify(hash))
     }
-    kbd.appendChild(buttonX)
-    divX.appendChild(kbd)
-    index2 += 1
   }
-  index += 1
 }
+
 
 document.onkeypress = function(keyboard) {
   console.log('输入了一个按键')
