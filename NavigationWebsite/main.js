@@ -37,13 +37,34 @@ for (var i = 0; i < keys.length; i++) {
     spanX.className = 'keyspan'
     spanX.textContent = row[j]
     kbdX.appendChild(spanX)
+    imgX = document.createElement('img')
+    imgX.src = 'http://' + hash[row[j]] + '/favicon.ico'
+    if (hash[row[j]]) {
+      imgX.src = 'http://' + hash[row[j]] + '/favicon.ico'
+    } else {
+      imgX.src = './img/NavigationWebsiteNull.png'
+    }
+    imgX.onerror = function(xxx) {
+      // console.log('下载失败',xxx);
+      xxx.target.src = './img/NavigationWebsiteNull.png'
+    }
+    kbdX.appendChild(imgX)
     buttonX.onclick = function(keyboard){
       console.log('点到了')
       console.log(keyboard)
       console.log('keyboard.target.id', keyboard.target.id)
+      buttonX2 = keyboard.target
+      Site = prompt('✍️ 请输入网址👇')
       key = keyboard.target.id
-      Site = prompt('请输入网址')
       hash[key] = Site
+      imgX2 =  buttonX2.nextSibling.nextSibling
+      console.log('imgX2', imgX2);
+      console.log('buttonX2', buttonX2);
+      imgX2.src = 'http://' + Site + '/favicon.ico'
+      imgX.onerror = function(xxx) {
+        // console.log('下载失败',xxx);
+        xxx.target.src = './img/NavigationWebsiteNull.png'
+      }
       localStorage.setItem('localHash', JSON.stringify(hash))
     }
   }
@@ -59,7 +80,9 @@ document.onkeypress = function(keyboard) {
   webSite = hash[key]
   console.log('webSite',webSite);
   // location.href = 'http://' + webSite
-  window.open('http://' + webSite, '_blank')
+  if (webSite) {
+    window.open('http://' + webSite, '_blank')
+  }
 }
 
 

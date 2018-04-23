@@ -2,9 +2,24 @@
 *{
   /* outline: dashed #ffe9e9 1px; */
 }
+body{
+  height: 100vh; /*viewport height*/
+  margin: 0;
+  background-color: #F6F6F6;
+}
+main {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 main > div {
-  padding-top: 15em;
+  margin-top: 15em;
   /* border-top: 300px solid white; */
+  /* border: 1px solid red; */
+  padding: 32px 46px 36px;
+  box-shadow: 0 0 0px 2px #e2e2e2;
+  border-radius: 11px;
 }
 main > div > div > kbd .~ {
   width: 75px !importance;
@@ -137,8 +152,54 @@ main > div > div > kbd > button {
   }
 
 kbd:hover > button {
-    display: inline-block;
+  display: inline-block;
+  width: 6px;
+  height: 5px;
+  background-color: #5e727c;
+  border: 0px;
+  border-radius: 2px;
+  margin-left: 4px;
+  margin-top: 39px;
+  color: white;
+  padding-bottom: 15px;
+  padding-right: 10px;
+  padding-left: 3px;
   }
+
+main > div > div > kbd > img {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    display: none;
+  }
+/* kbd:hover > img {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  padding: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  border: 2px solid #49505B;
+  display: none;
+  left: 12px;
+  top: -36px;
+  background: white;
+  border-radius: 5px;
+  display: inline-block;
+} */
+
+kbd:hover > img {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  padding: 2px 2px 2px;
+  display: none;
+  left: 23px;
+  top: 17px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+}
 
 /* span:hover  button {
     display: inline-block;
