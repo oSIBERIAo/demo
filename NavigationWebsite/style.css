@@ -1,36 +1,153 @@
 
 *{
-  outline: dashed #ffe9e9 1px;
+  /* outline: dashed #ffe9e9 1px; */
 }
 main > div {
   padding-top: 15em;
   /* border-top: 300px solid white; */
 }
+main > div > div > kbd .~ {
+  width: 75px !importance;
+  background-color: white;
+}
+
 main > div > div > kbd {
-    border: 1px solid red;
-    width: 4em;
-    height: 4em;
+  /* border: 2px solid #8EA0A9; */
+  background: #5F727C;
+  border-radius: 2px;
+  box-shadow: 0 0 0px 3px #414551;
+  /* box-shadow: 0px 4px 0px 12px #5F727C, 0 5px 0px 15px #414551; */
+  /* outline: dashed #ffe9e9 1px; */
+  width: 65px;
+  height: 68px;
+  line-height: 4em;
+  margin-left: 0.6em;
+  margin-right: 0.6em;
+  display: inline-block;
+  text-transform: uppercase;
+  position: relative;
+}
+
+main > div > .div1 > kbd {
+    /* border: 2px solid #8EA0A9; */
+    background: #7E9099;
+    border-radius: 2px;
+    box-shadow: 0 0 0px 3px #414551;
+    /* box-shadow: 0px 4px 0px 12px #5F727C, 0 5px 0px 15px #414551; */
+    /* outline: dashed #ffe9e9 1px; */
+    width: 65px;
+    height: 68px;
     line-height: 4em;
-    margin-left: 0.3em;
-    margin-right: 0.3em;
+    margin-left: 0.6em;
+    margin-right: 0.6em;
     display: inline-block;
     text-transform: uppercase;
     position: relative;
-  }
+}
+
+main > div > .div1 > kbd > .keyspan{
+  border: 2px solid #B0BFC6;
+  border-radius: 2px;
+  background-color: #9CB2BE;
+  width: 45px;
+  height: 51px;
+  margin: 4px auto;
+  color: white;
+  /* font-weight: bold; */
+  font-family: PingFang,Helvetica,Arial;
+  font-size: 11px;
+  display: inline-block;
+}
+
+/* .a,.s,.d,.f,.g,.h,.j,.k,.l */
+main > div > .div2 > kbd {
+    background: #93A0A7;
+    border-radius: 2px;
+    box-shadow: 0 0 0px 3px #414551;
+    width: 65px;
+    height: 68px;
+    line-height: 4em;
+    margin-left: 0.6em;
+    margin-right: 0.6em;
+    display: inline-block;
+    text-transform: uppercase;
+    position: relative;
+}
+
+main > div > .div2 > kbd > .keyspan{
+  border: 2px solid #BFCCD2;
+  border-radius: 2px;
+  background-color: #B8C8D1;
+  width: 45px;
+  height: 51px;
+  margin: 4px auto;
+  color: white;
+  /* font-weight: bold; */
+  font-family: PingFang,Helvetica,Arial;
+  font-size: 11px;
+  display: inline-block;
+}
+
+main > div > .div3 > kbd {
+    background: #C4C6C7;
+    border-radius: 2px;
+    box-shadow: 0 0 0px 3px #414551;
+    width: 65px;
+    height: 68px;
+    line-height: 4em;
+    margin-left: 0.6em;
+    margin-right: 0.6em;
+    display: inline-block;
+    text-transform: uppercase;
+    position: relative;
+}
+
+main > div > .div3 > kbd > .keyspan{
+  border: 2px solid #EFF1F2;
+  border-radius: 2px;
+  background-color: #EFF1F2;
+  width: 45px;
+  height: 51px;
+  margin: 4px auto;
+  color: #ABC0CA;
+  /* font-weight: bold; */
+  font-family: PingFang,Helvetica,Arial;
+  font-size: 11px;
+  display: inline-block;
+}
+
+.keyspan {
+  border: 2px solid #8ea0a9;
+  border-radius: 2px;
+  background-color: #738995;
+  width: 45px;
+  height: 51px;
+  margin: 4px auto;
+  color: white;
+  /* font-weight: bold; */
+  font-family: PingFang,Helvetica,Arial;
+  font-size: 11px;
+  display: inline-block;
+}
 
 main > div > div > kbd > button {
     position: absolute;
-    margin-top: 31px;
+    margin-top: 53px;
     display: none;
   }
 
 kbd:hover > button {
     display: inline-block;
   }
-  
+
+/* span:hover  button {
+    display: inline-block;
+  } */
+
 main > div > div {
   text-align: center;
-  padding-top: 2em;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 

@@ -1,8 +1,9 @@
 var keys ={
-  '0':{0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length:10},
-  '1':{0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:9},
-  '2':{0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7},
-  'length':3
+  '0':{0:'~',1:'1',2:'2',3:'3',4:'4',5:'5',6:'6',7:'7',8:'8',9:'9',10:'0',11:'-',length:12},
+  '1':{0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length:10},
+  '2':{0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:9},
+  '3':{0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7},
+  'length':4
 }
 var hash = {
   'q':'qq.com',
@@ -17,17 +18,25 @@ if (hashInLocalStorage) {
 }
 
 for (var i = 0; i < keys.length; i++) {
-  divX = document.createElement('div')
-  mainX.appendChild(divX)
   var row = keys[i]
+  var className = ''
+  divX = document.createElement('div')
+  divX.className = 'div' + i
+  mainX.appendChild(divX)
   for (var j = 0; j < row.length; j++) {
     kbdX = document.createElement('kbd')
-    kbdX.textContent = row[j]
+    // kbdX.textContent = row[j]
+    className = 'key ' + row[j]
+    kbdX.className = className
     divX.appendChild(kbdX)
     buttonX = document.createElement('button')
     buttonX.textContent = 'E'
     buttonX.id = row[j]
     kbdX.appendChild(buttonX)
+    spanX = document.createElement('span')
+    spanX.className = 'keyspan'
+    spanX.textContent = row[j]
+    kbdX.appendChild(spanX)
     buttonX.onclick = function(keyboard){
       console.log('点到了')
       console.log(keyboard)
