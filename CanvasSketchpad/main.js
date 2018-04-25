@@ -87,9 +87,13 @@ function drawLine(x1,y1,x2,y2){
 
 var eraserEnable = false
 eraser.onclick = function() {
-  eraserEnable = !eraserEnable
+  eraserEnable = true
+  actions.className = 'actions x'
 }
-
+brush.onclick = function() {
+  eraserEnable = false
+  actions.className = 'actions'
+}
 
 
 
