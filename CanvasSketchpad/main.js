@@ -1,6 +1,6 @@
 var canvas = document.getElementById('xxx');
 var context = canvas.getContext('2d');
-
+var lineWidth = 2
 
 
 
@@ -36,7 +36,7 @@ function listenToUser(canvas) {
       canvas.ontouchstart = function(aaa){
         var x = aaa.touches[0].clientX
         var y = aaa.touches[0].clientY
-        console.log(aaa,x,y);
+        // console.log(aaa,x,y);
         using = true
         if(eraserEnable){
           context.clearRect(x-5,y-5,10,10)
@@ -152,8 +152,8 @@ function drawCircle(x,y,radius) {
 }
 function drawLine(x1,y1,x2,y2){
   context.beginPath()
-  context.strokeStyle = 'black'
-  context.lineWidth = 4
+  // context.strokeStyle = 'black'
+  context.lineWidth = lineWidth
   context.moveTo(x1,y1)
   context.lineTo(x2,y2)
   context.stroke()
@@ -165,22 +165,69 @@ function drawLine(x1,y1,x2,y2){
 var eraserEnable = false
 eraser.onclick = function() {
   eraserEnable = true
-  actions.className = 'actions x'
+  // actions.className = 'actions x'
+  eraser.classList.add('active')
+  brush.classList.remove('active')
 }
 brush.onclick = function() {
   eraserEnable = false
-  actions.className = 'actions'
+  // actions.className = 'actions'
+  brush.classList.add('active')
+  eraser.classList.remove('active')
+}
+///////////
+black.onclick = function() {
+  context.strokeStyle = 'black'
+  black.classList.add('active')
+  green.classList.remove('active')
+  blue.classList.remove('active')
+  red.classList.remove('active')
 }
 
+red.onclick = function() {
+  context.strokeStyle = 'red'
+  red.classList.add('active')
+  green.classList.remove('active')
+  blue.classList.remove('active')
+  black.classList.remove('active')
+}
 
+green.onclick = function() {
+  context.strokeStyle = 'green'
+  green.classList.add('active')
+  red.classList.remove('active')
+  blue.classList.remove('active')
+  black.classList.remove('active')
+}
 
+blue.onclick = function() {
+  context.strokeStyle = 'blue'
+  blue.classList.add('active')
+  green.classList.remove('active')
+  red.classList.remove('active')
+  black.classList.remove('active')
+}
+///////////
+thin.onclick = function() {
+  lineWidth = 2
+}
+thick.onclick = function() {
+  lineWidth = 4
+  console.log(111111);
+}
+////////////
+clear.onclick = function() {
+  context.clearRect(0,0,canvas.width,canvas.height)
+}
 
-
-
-
-
-
-
+save.onclick = function() {
+  var url = canvas.toDataURL("image/png",1)
+  var a = document.createElement('a')
+  a.href = url
+  a.download = 'Sketch'
+  a.target = '_blank'
+  a.click()
+}
 
 
 

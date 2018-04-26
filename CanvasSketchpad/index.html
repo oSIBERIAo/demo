@@ -4,14 +4,37 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./style.css">
+
   <title>Sketchpad</title>
 </head>
 <body>
   <canvas id="xxx" width=300 height=300></canvas>
   <div id="actions" class="actions">
-    <button id="eraser">橡皮擦</button>
-    <button id="brush">画笔</button>
+    <svg id="eraser" class="eraser">
+      <use xlink:href="#icon-diannao-"></use>
+    </svg>
+    <svg id="brush" class="brush">
+      <use xlink:href="#icon-fankui"></use>
+    </svg>
+    <svg id="save" class="save">
+      <use xlink:href="#icon-fasong"></use>
+    </svg>
+    <svg id="clear" class="clear">
+      <use xlink:href="#icon-diannao"></use>
+    </svg>
   </div>
+  <ol class="colors">
+    <li id="black" class="black"></li>
+    <li id="red" class="red"></li>
+    <li id="green" class="green"></li>
+    <li id="blue" class="blue"></li>
+  </ol>
+  <ol class="sizes">
+    <li id="thin"class="thin"></li>
+    <li id="thick"class="thick"></li>
+  </ol>
 </body>
+<script src="//at.alicdn.com/t/font_645229_k5awjpf7s73z0k9.js"></script>
 <script src="./main.js"></script>
+
 </html>
