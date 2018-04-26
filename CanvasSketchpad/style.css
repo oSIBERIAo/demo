@@ -100,8 +100,8 @@ button{
 
 .sizes {
   position: fixed;
-  right: 10px;
-  top: 45px;
+  left: 10px;
+  top: 230px;
 }
 
 .sizes > li {
@@ -117,7 +117,7 @@ button{
 
 .sizes > .thick{
   height: 0;
-  width: 30px;
+  width: 20px;
   border-top: 10px solid black;
 }
 
