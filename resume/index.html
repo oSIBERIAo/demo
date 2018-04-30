@@ -27,18 +27,32 @@
   <div id="siteWelcome" class="site-welcome active">
     <div class="loading"></div>
   </div>
-  <div class="topNavBar">
+  <div id="sticky" class="topNavBar">
     <div class="topNavBar-inner clearfix">
       <a class="logo" src="#" alt="logo">
         <span class="o">o</span><span class="siberia">SIBERIA</span><span class="o">o</span>
       </a>
-      <nav>
+      <nav class="menu">
         <ul class="clearfix">
           <!-- a[href=#]*5 -->
           <li><a href="#">关于</a></li>
           <li><a href="#">技能</a></li>
-          <li><a href="#">作品</a></li>
-          <li><a href="#">博客</a></li>
+          <li class="menuTigger">
+            <a href="#">作品</a>
+            <ul class="submenu">
+              <li>作品1</li>
+              <li>作品2</li>
+              <li>作品3</li>
+            </ul>
+          </li>
+          <li class="menuTigger">
+            <a href="#">博客</a>
+            <ul class="submenu">
+              <li>博客1</li>
+              <li>博客2</li>
+              <li>博客3</li>
+            </ul>
+          </li>
           <li><a href="#">日历</a></li>
           <li><a href="#">联系方式</a></li>
           <li><a href="#">其他</a></li>
@@ -221,14 +235,52 @@
   </section>
   <div class="black"></div>
   <script>
-    siteWelcome.classList.remove('active')
+    var log = function(){
+        console.log.apply(console, arguments)
+    }
+    setTimeout(function(){
+      siteWelcome.classList.remove('active')
+    }, 150)
+
+    window.onscroll = function(xxx){
+      log(window.scrollY)
+      if (window.scrollY > 0){
+        sticky.classList.add('sticky')
+      } else {
+        sticky.classList.remove('sticky')
+      }
+    }
+    // let liTags = document.getElementsByClassName('menuTigger')
+    let liTags = document.querySelectorAll('nav.menu > ul > li')
+    log('querySelectorAll',liTags)
+    for (let i = 0; i < liTags.length; i++) {
+       liTags[i].onmouseenter = function(x){
+         x.currentTarget.classList.add('active')
+          // let li = x.currentTarget
+          // let brother = li.getElementsByTagName('ul')[0]
+          // brother.classList.add('active')
+        // while (brother.nodeType === 3/Node.TEXT_NODE*/)
+        // while (brother.tagName !== 'UL'){
+        //   brother = brother.nextSibling
+        }
+       liTags[i].onmouseleave = function(x){
+          x.currentTarget.classList.remove('active')
+           // let li = x.currentTarget
+           // let brother = li.getElementsByTagName('ul')[0]
+           // brother.classList.remove('active')
+       }
+    }
   </script>
 </body>
 </html>
 
+<!-- if(a){console.log('yes')}
 
+if(window['a']){console.log('yes')}
 
+if(window.a){console.log('yes')}
 
+if('a' in window){console.log('yes')} -->
 
 
 
