@@ -167,9 +167,9 @@ window.jQuery = function(nodeOrSelector){
 window.$ = jQuery
 
 var $div = $('div')
-$div.jQuery
 $div.addClass('red') // 可将所有 div 的 class 添加一个 red
 $div.setText('hi') // 可将所有 div 的 textContent 变为 hi
+
 $div.getText()
 
 
@@ -184,8 +184,44 @@ $div.getText()
   }
 
 
-
-
+  window.jQuery = function(nodeOrSelector){
+    let nodes = {}
+    if(typeof nodeOrSelector === 'string'){
+      temp = document.querySelectorAll(nodeOrSelector)
+      for (var i = 0; i < temp.length; i++) {
+        nodes[i] = temp[i]
+      }
+      nodes.length = temp.length
+    }else if (nodeOrSelector instanceof Node){
+      nodes = {
+        0: nodeOrSelector,
+        length: 1
+      }
+    }
+    nodes.addClass = function(node){
+      for (let i = 0; i < nodes.length; i++) {
+        nodes[i].className = node
+      }
+    }
+    nodes.Text = function(text){
+      if(text === undefined){
+        var texts = []
+        for (let i = 0; i < nodes.length; i++) {
+          texts.push(nodes[i].textContent)
+        }
+        return texts
+      } else {
+        for (let i = 0; i < nodes.length; i++) {
+          nodes[i].textContent = text
+        }
+      }
+    }
+    return nodes
+  }
+  window.$ = jQuery
+  var $div = $('div')
+  $div.addClass('red')
+  $div.Text('hi')
 
 
 
