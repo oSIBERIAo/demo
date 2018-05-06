@@ -36,12 +36,12 @@ var timerId = setInterval(() => {
 }, 1000)
 
 // clearInterval() 方法可取消由 setInterval() 函数设定的定时执行操作。
-$('.window').on('mouseenter', function() {
+$('.window, #buttons').on('mouseenter', function() {
   window.clearInterval(timerId)
 })
 
-$('.window').on('mouseleave', function(){
-  var timerId = setInterval(() => {
+$('.window, #buttons').on('mouseleave', function(){
+  timerId = setInterval(() => {
     n += 1
      allButtons.eq(n % size).trigger('click')
         .addClass('red')
