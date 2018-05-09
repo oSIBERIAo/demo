@@ -8,24 +8,25 @@ let timer = setInterval(() => {
     })
   makeCurrent(getImage(n + 1))
   n += 1
+  console.log('n',n);
 }, 3000)
 
 
-document.addEventListener('visibilitychange', function(e){
-  console.log(document.hidden);
-  if(document.hidden){
-    window.clearInterval(timer)
-  } else {
-    timer = setInterval(() => {
-      makeLeave(getImage(n))
-        .one('transitionend', function(e){
-          makeEnter($(e.currentTarget))
-        })
-      makeCurrent(getImage(n + 1))
-      n += 1
-    }, 3000)
-  }
-})
+// document.addEventListener('visibilitychange', function(e){
+//   console.log(document.hidden);
+//   if(document.hidden){
+//     window.clearInterval(timer)
+//   } else {
+//     timer = setInterval(() => {
+//       makeLeave(getImage(n))
+//         .one('transitionend', function(e){
+//           makeEnter($(e.currentTarget))
+//         })
+//       makeCurrent(getImage(n + 1))
+//       n += 1
+//     }, 3000)
+//   }
+// })
 
 
 
@@ -39,6 +40,7 @@ function x(n){
     n = n%3
     if(n === 0){
       n = 3
+      console.log('n重置了', n);
     }
   }  //n = 1 2 3
   return n
