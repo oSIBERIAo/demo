@@ -14,35 +14,12 @@
 
 .images > img{
   width: 100%;
-  transition: all 3s;
-  /* position: absolute; */
-}
-
-.images > img:nth-child(1){
+  transition: all 1500ms;
   position: absolute;
   top: 0;
-  left: 0;
-}
-
-.images > img:nth-child(2){
-  position: absolute;
-  top: 0;
-  left: 0%;
-}
-
-.images > img:nth-child(3){
-  position: absolute;
-  top: 0;
-  left: 0%;
 }
 
 
-
-.images > img.right{
-  position: absolute;
-  top: 0;
-  left: 100%;
-}
 
 .images > img.current{
   left: 0;
@@ -60,12 +37,15 @@
 }
 
 
+/* *{margin:0;padding:0;}
+*{box-sizing: border-box;}
 
-
-
-
-
-/*
+.window{
+  width: 400px;
+  height: 300px;
+  margin: 20px auto;
+  overflow: hidden;
+}
 .images{
   position: relative;
 }
@@ -75,13 +55,7 @@
   position: absolute;
   top: 0;
 }
- */
 
-
-
-
-
-/*
 .images > img.current{
   left: 0;
   transform: translateX(0);
@@ -93,5 +67,4 @@
 }
 .images > img.enter{
   transform: translateX(100%);
-}
-*/
+} */

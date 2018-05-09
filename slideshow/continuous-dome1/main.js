@@ -1,15 +1,31 @@
-let n = 1
+let n
 初始化()
-setInterval(() => {
-  mackleave(getImage(n))
-    .one('transitionend', function(e){
-      mackEnter($(e.currentTarget))
+let timer = setInterval(() => {
+  console.log('n',n);
+  makeLeave(getImage(n))
+    .one('transitionend', (e)=>{
+      makeEnter($(e.currentTarget))
     })
-  mackCrrent(getImage(n + 1))
+  makeCurrent(getImage(n + 1))
   n += 1
 }, 3000)
 
 
+document.addEventListener('visibilitychange', function(e){
+  console.log(document.hidden);
+  if(document.hidden){
+    window.clearInterval(timer)
+  } else {
+    timer = setInterval(() => {
+      makeLeave(getImage(n))
+        .one('transitionend', function(e){
+          makeEnter($(e.currentTarget))
+        })
+      makeCurrent(getImage(n + 1))
+      n += 1
+    }, 3000)
+  }
+})
 
 
 
@@ -27,25 +43,26 @@ function x(n){
   }  //n = 1 2 3
   return n
 }
-
-function mackCrrent($node){
+function 初始化(){
+  n = 1
+  $(`.images > img:nth-child(${n})`).addClass('current')
+    .siblings().addClass('enter')
+}
+////////////////////////////////////////////////////////////
+function makeCurrent($node){
   return $node.removeClass('enter leave').addClass('current')
 }
 
-function mackleave($node){
+function makeLeave($node){
   return $node.removeClass('enter current').addClass('leave')
 }
 
-function mackEnter($node){
-  return $node.removeClass('current leave').addClass('enter')
+function makeEnter($node){
+  return $node.removeClass('leave current').addClass('enter')
 }
 ////////////////////////////////////////////////////////////
-function 初始化(){
-  $('.images > img:nth-child(1)').addClass('current')
-  $('.images > img:nth-child(2)').addClass('enter')
-  $('.images > img:nth-child(3)').addClass('enter')
-}
-////////////////////////////////////////////////////////////
+
+
 
 
 
