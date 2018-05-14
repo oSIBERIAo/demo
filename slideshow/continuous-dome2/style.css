@@ -17,8 +17,15 @@
   width: 100%;
 }
 
-#buttonWrapper {
+#buttonWrapper, #controls  {
   text-align:center;
+  margin: 15px 0;
+}
+
+#controls > button{
+  text-align:center;
+  padding: 6px 10px;
+  border: 1px solid #eaeaea;
 }
 
 #buttonWrapper > button{
