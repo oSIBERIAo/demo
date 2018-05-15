@@ -1,0 +1,55 @@
+*{
+  outline: dashed #ffe9e9 1px;
+}
+.red.active{
+  background: red;
+}
+.blue.active{
+  background: blue;
+}
+.green.active{
+  background: green;
+}
+.yellow.active{
+  background: yellow;
+}
+.orange.active{
+  background: orange;
+}
+.purple.active{
+  background: purple;
+}
+
+div{
+  padding: 30px 30px;
+  transition: all 1s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* //////////////// */

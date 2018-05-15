@@ -1,0 +1,75 @@
+*{
+  outline: dashed #ffe9e9 1px;
+}
+.wrapper {
+  margin: 270px 50% 0;
+  padding: auto;
+  position: relative;
+  display: inline-block;
+}
+.wrapper > button{
+  white-space: nowrap;
+}
+.popover {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  white-space: nowrap;
+  padding: 10px;
+  margin: -60px 0px 0px -60px;
+  border: 1px solid red;
+}
+.popover::before{
+  position: absolute;
+  right: 30%;
+  top: 42px;
+  border: 10px solid transparent;
+  border-top-color: red;
+  content: '';
+}
+.popover::after{
+  position: absolute;
+  right: 30%;
+  top: 42px;
+  border: 10px solid transparent;
+  border-top-color: white;
+  content: '';
+  margin-top: -1px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* //////////////// */
