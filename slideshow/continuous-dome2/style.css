@@ -1,11 +1,26 @@
 *{margin:0;padding:0;}
 *{box-sizing: border-box;}
+button{
+  outline:none;
+}
+
+.select{
+  text-align: center;
+  padding: 3px 3px;
+  margin: 0 9px;
+  border: 2px solid #ffffff !important;
+  border-radius: 10px ;
+  background-color: #8BABF5 !important;
+  box-shadow: 0px 0px 0px 2px #E8E8E8 !important;
+}
 
 .window{
   width: 400px;
   height: 300px;
   margin: 20px auto;
   overflow: hidden;
+  border-radius: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .images{
@@ -21,15 +36,33 @@
   text-align:center;
   margin: 15px 0;
 }
+#controls {
+    text-align: center;
+}
 
-#controls > button{
-  text-align:center;
-  padding: 6px 10px;
-  border: 1px solid #eaeaea;
+#buttonWrapper {
+  border: 1px solid #EAEAEA;
+  border-radius: 30px;
+  width: 280px;
+  height: 40px;
+  margin: -60px auto 0;
+  padding: 3px 0 0;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.10);
+}
+
+#controls > button {
+  text-align: center;
+  padding: 4px 4px;
+  margin: 0 150px;
+  border: 1px solid #ffffff;
 }
 
 #buttonWrapper > button{
-  text-align:center;
-  padding: 6px 10px;
-  border: 1px solid #eaeaea;
+  text-align: center;
+  padding: 3px 3px;
+  margin: 0 9px;
+  border: 0.5px solid #eaeaea ;
+  border-radius: 10px ;
+  background-color: #EFEFEF ;
+  box-shadow: 0px -0.5px 3px 1px #d2d2d2 inset ;
 }

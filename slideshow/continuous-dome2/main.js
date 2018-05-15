@@ -53,6 +53,8 @@ function goToSlide(index) {
   }
   if (current === $buttons.length - 1 && index === 0) {
   console.log('n>1');
+  activeButton($buttons.eq(index))
+  console.log('$buttons.eq(index)', $buttons.eq(index));
   $slides.css({transform:`translateX(${- ($buttons.length + 1) * imagesWidth}px)`})
     .one('transitionend', function() {
       $slides
@@ -63,6 +65,7 @@ function goToSlide(index) {
     })
   } else if (current === 0 && index === $buttons.length - 1) {
     console.log('1>n');
+    activeButton($buttons.eq(index))
     $slides.css({transform:`translateX(0px)`})
       .one('transitionend', function() {
         $slides
@@ -72,11 +75,17 @@ function goToSlide(index) {
           .show()
       })
   } else {
+    activeButton($buttons.eq(index))
     $slides.css({transform:`translateX(${- (index+1) * imagesWidth}px)`})
   }
   current = index
 }
 
+function activeButton($button){
+  $button
+    .addClass('select')
+    .siblings('.select').removeClass('select')
+}
 
 //////////////////////////////////////////////
 
