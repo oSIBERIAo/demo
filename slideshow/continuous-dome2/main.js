@@ -32,6 +32,17 @@ $('.container').on('mouseleave', function() {
   },2000)
 })
 
+//监听用户是否离开页面
+document.addEventListener('visibilitychange', function(e){
+  // console.log('document.hidden', document.hidden);
+  if(document.hidden){
+    window.clearInterval(timer)
+  } else {
+    timer = setInterval(function() {
+      goToSlide(current + 1)
+    },2000)
+  }
+})
 
 //转到指定页面
 bindEvents()
