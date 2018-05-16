@@ -1,30 +1,17 @@
 $(clickMe).on('click', function() {
-  $(popover).show()
-  setTimeout(function() {
-    $(document).one('click', function() {
-      $(popover).hide()
-    })
-  }, 0)
+   $(popover).toggleClass("active")
+   if($(popover).hasClass("active")){
+     setTimeout(function() {
+       $(document).one('click', function() {
+         $(popover).removeClass("active")
+       })
+     }, 0)
+   }
 })
+
 $(wrapper).on('click', function(e){
   e.stopPropagation()
 })
-// $(wrapper).on('click', false)
-//相等
-// $(wrapper).on('click', function(e){
-//   e.preventDefault()
-//   e.stopPropagation()
-// })
-
-
-
-
-
-
-
-
-
-
 
 
 

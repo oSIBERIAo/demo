@@ -38,8 +38,9 @@
   margin-top: -1px;
 }
 
-
-
+.popover.active{
+  display: block;
+}
 
 
 
