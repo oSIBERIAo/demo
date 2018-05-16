@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./style.css">
+  <title>Document</title>
+</head>
+<body>
+  <h5>您的余额为： <span id="amount">&&&amount&&&</span> 元 😄😄😄</h5>
+  <!-- <button id="button">付款1元</button> -->
+
+  <form action="/pay" method="post" target="result">
+    <input type="submit" value="付款">
+  </form>
+  <iframe name="result" src="about:blank" frameborder="0" height="200"></iframe>
+
+  <script src="./main.js"></script>
+</body>
+</html>

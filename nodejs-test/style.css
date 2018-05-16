@@ -1,0 +1,13 @@
+body {
+  /* background:#f3f3f3; */
+  background: white;
+  /* font-size: 45px; */
+}
+h5 {
+  font-size: 30px;
+}
+
+h5 > #amount {
+  font-size: 45px;
+  color: #3b5b90;
+}
