@@ -46,7 +46,7 @@ var server = http.createServer(function(request, response){
     response.setHeader('Content-Type', 'application/jacascript;charset=utf-8')
     fs.writeFileSync('./balance', newAmount)
     response.write(`
-      ${query.callbackName}.call(undefined,"success")
+      ${query.callback}.call(undefined,"success")
     `)
           // alert("success")
     // if (Math.random() > 0.5) {
