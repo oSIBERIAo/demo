@@ -1,9 +1,26 @@
-// button.addEventListener('click', (e)=>{
-//   let n = amount.innerText
-//   let number =  parseInt(n, 10)
-//   let newNumber = number - 1
-//   amount.innerText = newNumber
-// })
+button.addEventListener('click', (e)=>{
+  let script =  document.createElement('script')
+  let functionName = 'pay' + parseInt(Math.random()*1000000, 10)
+  script.src = '/pay?callbackName=' + functionName
+  window[functionName] = function(result) {
+    if (result === "success") {
+      alert("这是前端的代码～")
+      amount.innerText = amount.innerText - 1
+    } else {
+      alert(`操作失败`)
+    }
+  }
+  document.body.appendChild(script)
+  script.onload = function(e) {
+    e.currentTarget.remove()
+    delete window[functionName]
+  }
+  script.onerror = function() {
+    e.currentTarget.remove()
+    delete window[functionName]
+  }
+
+})
 
 
 

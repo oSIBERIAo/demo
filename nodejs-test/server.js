@@ -37,18 +37,24 @@ var server = http.createServer(function(request, response){
     response.end()
   } else if(path === '/main.js') {
     var string = fs.readFileSync('./main.js', 'utf8')
-    response.setHeader('Content-Type', 'text/html;charset=utf-8')
+    response.setHeader('Content-Type', 'application/jacascript;charset=utf-8')
     response.write(string)
     response.end()
-  } else if(path === '/pay' && method.toUpperCase() === 'POST') {
+  } else if(path === '/pay') {
     var amount = fs.readFileSync('./balance', 'utf8')
     var newAmount = amount - 1
-    if (Math.random() > 0.5) {
-      fs.writeFileSync('./balance', newAmount)
-      response.write('success')
-    } else {
-      response.write('fail')
-    }
+    response.setHeader('Content-Type', 'application/jacascript;charset=utf-8')
+    fs.writeFileSync('./balance', newAmount)
+    response.write(`
+      ${query.callbackName}.call(undefined,"success")
+    `)
+          // alert("success")
+    // if (Math.random() > 0.5) {
+    //   fs.writeFileSync('./balance', newAmount)
+    //   response.write('success')
+    // } else {
+    //   response.write('fail')
+    // }
     response.end()
   } else {
     response.statusCode = 404
