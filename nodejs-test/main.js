@@ -1,4 +1,5 @@
 //jq版
+// /💰付款1元💰
 button.addEventListener('click', (e)=>{
   $.ajax({
       url: "http://localhost:8888/pay",
@@ -14,7 +15,38 @@ button.addEventListener('click', (e)=>{
       }
   });
 })
-
+//💰frank付款1元💰
+buttonfrank.addEventListener('click', (e)=>{
+  $.ajax({
+      url: "http://frank.com:8001/pay",
+      dataType: "jsonp",
+      success: function( response ) {
+          console.log( response ); // server response
+          if (response === "success") {
+            alert("这是前端的代码～")
+            amount.innerText = amount.innerText - 1
+          } else {
+            alert(`操作失败`)
+          }
+      }
+  });
+})
+//💰 JACK付款1元💰
+buttonJACK.addEventListener('click', (e)=>{
+  $.ajax({
+      url: "http://jack.com:8002/pay",
+      dataType: "jsonp",
+      success: function( response ) {
+          console.log( response ); // server response
+          if (response === "success") {
+            alert("这是前端的代码～")
+            amount.innerText = amount.innerText - 1
+          } else {
+            alert(`操作失败`)
+          }
+      }
+  });
+})
 /*
 //js版
 button.addEventListener('click', (e)=>{
