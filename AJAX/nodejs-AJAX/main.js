@@ -5,11 +5,7 @@ button.addEventListener('click', (e)=>{
    request.open('GET', '/xxx') //配置 request
    request.onreadystatechange = ()=>{
      if (request.readyState === 4) {
-       console.log('haha');
        if (request.status >= 200 && request.status <= 300) {
-         console.log('haha2');
-         console.log(request);
-         console.log(request.responseText);
          let string = request.responseText
          let object = window.JSON.parse(string)
        }
