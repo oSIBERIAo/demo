@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./index.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.6/js/swiper.min.js"></script>
   <script src="//at.alicdn.com/t/font_632799_iji2nqmpxsejnhfr.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
   <script src="./main.js"></script>
   <style type="text/css">
     .icon {
@@ -297,7 +298,44 @@
         let href = a.getAttribute('href')
         let element = document.querySelector(href)
         let top = element.offsetTop
-        window.scrollTo(0, top-80)
+
+
+        let n = 25
+        let t = 500 / n
+        let currentTop = window.scrollY
+        let targetTop = top - 80
+        let S = targetTop - currentTop
+        let i = 0
+
+        function animate(time) {
+            requestAnimationFrame(animate);
+            TWEEN.update(time);
+        }
+        requestAnimationFrame(animate);
+        var coords = { y: currentTop };
+        var tween = new TWEEN.Tween(coords)
+          .to({y: targetTop }, 1000)
+          .easing(TWEEN.Easing.Cubic.InOut)
+          // .easing(TWEEN.Easing.Bounce.InOut)
+          // .easing(TWEEN.Easing.Quartic.InOut)
+          .onUpdate(function() {
+              window.scrollTo(0, coords.y)
+          })
+          .start();
+
+        //
+        // id = setInterval(()=>{
+        //   if(i === n){
+        //     window.clearInterval(id)
+        //     return
+        //   }
+        //   i += 1
+        //   window.scrollTo(0, currentTop + distance * i)
+        // }, duration)
+
+
+
+
       }
     }
   </script>
