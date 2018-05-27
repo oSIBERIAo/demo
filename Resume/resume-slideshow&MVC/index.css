@@ -33,6 +33,19 @@ hr {
   border: none;
   border-top: 1px solid #DEDEDE;
 }
+
+[data-x].animate{
+  animation: slideUp 0.5s;
+}
+@keyframes slideUp {
+  0%{
+    transform: translateY(-30px);
+  }
+  100%{
+    transform: translateY(0);
+  }
+}
+
 .topNavBar-inner{
   padding: 0px 16px;
 }
@@ -91,6 +104,11 @@ hr {
 }
 /* .topNavBar nav > ul > li.active > a::after , */
 .topNavBar nav > ul > li > a:hover::after {
+  background: #CF5D5F;
+  animation: menuSlide 1s;
+}
+
+.topNavBar nav > ul > li.highlight > a::after {
   background: #CF5D5F;
   animation: menuSlide 1s;
 }
