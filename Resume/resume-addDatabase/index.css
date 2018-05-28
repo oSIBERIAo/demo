@@ -491,6 +491,14 @@ section.protfolio > div.works .small {
     opacity: 1;
     background: #e6686a;
 }
+#titleMessage,#postMessageFrom {
+  text-align: center;
+  margin: 10px auto;
+}
+#messageList > li {
+  text-align: center;
+  margin: 10px auto;
+}
 /* body > div.black {
   margin: 100px 0 0;
 } */
