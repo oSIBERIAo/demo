@@ -34,6 +34,17 @@ hr {
   border-top: 1px solid #DEDEDE;
 }
 
+.icon {
+   width: 1em; height: 1em;
+   vertical-align: -0.15em;
+   fill: currentColor;
+   overflow: hidden;
+}
+.swiper-container {
+    width: 940px;
+    height: 705px;
+}
+
 [data-x].offset{
   transform: translateY(100px);
 }
