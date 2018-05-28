@@ -262,12 +262,24 @@
       siteWelcome.classList.remove('active')
     }, 1000)
 
+
+    // 添加 offset 类， 缓入动画。
+    let specialTags = document.querySelectorAll('[data-x]')
+    for (var i = 0; i < specialTags.length; i++) {
+      specialTags[i].classList.add('offset')
+    }
+    setTimeout(function() {
+      findClosest()
+    },1000)
     window.onscroll = function(x){
       if (window.scrollY > 0){
         sticky.classList.add('sticky')
       } else {
         sticky.classList.remove('sticky')
       }
+      findClosest()
+    }
+    function findClosest() {
       // log('window.scrollY',window.scrollY)
       let specialTags = document.querySelectorAll('[data-x]')
       let minIndex = 0
@@ -281,10 +293,12 @@
           minIndex = i
         }
       }
+      // 去除 offset 类， 缓入动画。
+      specialTags[minIndex].classList.remove('offset')
+
       //添加导航栏状态
       let id = specialTags[minIndex].id
       specialTags[minIndex].classList.add('animate')
-      // console.log(id);
       let a = document.querySelector('a[href="#'+ id + '"]')
       console.log(a);
       let li = a.parentNode

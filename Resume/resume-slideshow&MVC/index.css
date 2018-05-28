@@ -34,8 +34,12 @@ hr {
   border-top: 1px solid #DEDEDE;
 }
 
-[data-x].animate{
-  animation: slideUp 0.5s;
+[data-x].offset{
+  transform: translateY(100px);
+}
+[data-x]{
+  transform: translateY(0);
+  transition: all 0.5s;
 }
 @keyframes slideUp {
   0%{
@@ -73,7 +77,7 @@ hr {
   background: white;
   padding: 10px 0;
   box-shadow: 20px -1px 20px #00000040;
-  z-index: 1;
+  z-index: 2;
 }
 .topNavBar.sticky a {
   color: #3d4451;
@@ -360,12 +364,17 @@ section.skills .progressBar {
   background-color: #FAE1E1;
   border-radius: 3px;
   margin:4px 0px 35px;
+  overflow: hidden;
 }
 section.skills .progress {
   height: 5px;
   background-color: #E6686A;
   width: 70%;
   border-radius: 3px;
+  transition: all 1s;
+}
+section.skills.offset .progress {
+  width: 0%;
 }
 
 section.protfolio {
