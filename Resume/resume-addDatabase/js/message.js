@@ -3,7 +3,9 @@
 
   var model = Model({resourceName:'Message'})
   var controller = Controller({
-    init: function(view, controller) {
+    messageList: null,
+    form: null,
+    init: function(view, controller){
       this.messageList = view.querySelector('#messageList')
       this.form = view.querySelector('form')
       this.loadMessages()
@@ -25,11 +27,11 @@
         // 异常处理
       });
     },
-    bindEvnets: function() {
-      let myForm = this.form
-      this.form.addEventListener('submit', (e)=> {
+    bindEvents: function(){
+      console.log(this.form)
+      this.form.addEventListener('submit', (e)=>{
         e.preventDefault()
-        this.saveMessages.call(controller)
+        this.saveMessages()
       })
     },
     saveMessages: function() {
