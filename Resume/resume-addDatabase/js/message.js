@@ -36,6 +36,7 @@
     init: function(view, model) {
       this.view = view
       this.model = model
+      console.log(this.model);
       this.messageList = view.querySelector('#messageList')
       this.form = view.querySelector('form')
       this.model.init()
@@ -59,17 +60,24 @@
       });
     },
     bindEvnets: function() {
+      console.log(this.saveMessages);
       let myForm = this.form
-      this.form.addEventListener('submit', function(e) {
+      console.log('myForm-this.model',this.form);
+      console.log('bindEvnets-this.model',this.model);
+      this.form.addEventListener('submit', (e)=> {
         e.preventDefault()
-        this.saveMessages()
+        this.saveMessages.call(controller)
       })
     },
     saveMessages: function() {
+      let myForm = this.form
+      console.log('myForm',myForm);
+      console.log('saveMessages-this.model',this.model);
       let content = myForm.querySelector('input[name=content]').value
       let name = myForm.querySelector('input[name=name]').value
       // console.log(name);
-      this.model.save().then(function(object) {
+
+      this.model.save(name, content).then(function(object) {
         // alert(`${content}存入成功!`);
         // window.location.reload()
         let li = document.createElement('li')
