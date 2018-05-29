@@ -243,13 +243,16 @@
     </div>
     <div class="blank"></div>
   </section>
-  <section>
+  <section class="message">
     <h2 id="titleMessage">留言</h2>
     <form id="postMessageFrom">
-      <input type="text" name="content">
+      <label for="name">姓名:</label>
+      <input type="text" name="name" id="name">
+      <label for="content">内容:</label>
+      <input type="text" name="content" id="content">
       <input type="submit" value="提交">
     </form>
-    <ol id="messageList">    
+    <ol id="messageList">
     </ol>
   </section>
   <div class="blank"></div>

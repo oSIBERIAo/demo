@@ -493,12 +493,20 @@ section.protfolio > div.works .small {
 }
 #titleMessage,#postMessageFrom {
   text-align: center;
+  margin: 10px auto 20px auto;
+}
+#messageList {
   margin: 10px auto;
+  max-width: 940px;
+  border-top: 1px solid #DDD;
 }
 #messageList > li {
+  max-width: 940px;
   text-align: center;
-  margin: 10px auto;
+  padding: 12px 0px 14px 0px;
+  border-bottom: 1px solid #DDD;
 }
+
 /* body > div.black {
   margin: 100px 0 0;
 } */
