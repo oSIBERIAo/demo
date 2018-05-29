@@ -1,5 +1,5 @@
 !function (){
-  var view = document.querySelector('#sticky')
+  var view = View('#sticky')
   var controller = {
     view: null,
     init: function(view) {

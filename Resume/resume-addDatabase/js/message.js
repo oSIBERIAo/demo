@@ -1,49 +1,15 @@
 !function() {
-  var view =  document.querySelector('section.message')
+  var view =  View('section.message')
 
-  var model = {
-    init: function() {
-      var APP_ID = 'EDxMbgBCPl0kyC5cjk0IzxUp-gzGzoHsz';
-      var APP_KEY = 'KVS1wNH1CwYUb8aIA7zfEvqB';
-
-      AV.init({
-        appId: APP_ID,
-        appKey: APP_KEY
-      });
-      // console.log('运行到这里了');
-    },
-    //获取数据
-    fetch: function() {
-      var query = new AV.Query('Message');
-      return query.find()
-    },
-    //创建数据
-    save: function(name, content) {
-      var Message = AV.Object.extend('Message')
-      var message = new Message()
-      return message.save({
-        'content': content,
-        'name': name
-      })
-    },
-  }
-
-  var controller = {
-    view: null,
-    model: null,
-    messageList: null,
-    form: null,
-    init: function(view, model) {
-      this.view = view
-      this.model = model
-      console.log(this.model);
+  var model = Model({resourceName:'Message'})
+  var controller = Controller({
+    init: function(view, controller) {
       this.messageList = view.querySelector('#messageList')
       this.form = view.querySelector('form')
-      this.model.init()
       this.loadMessages()
-      this.bindEvnets()
     },
     loadMessages: function() {
+      console.log(this.model);
       this.model.fetch().then( (message)=> {
         let array = message.map((item)=> item.attributes)
         // console.log('here')
@@ -74,7 +40,8 @@
       let name = myForm.querySelector('input[name=name]').value
       // console.log(name);
 
-      this.model.save(name, content).then(function(object) {
+      this.model.save({'name': name, 'content':content})
+        .then(function(object) {
         // alert(`${content}存入成功!`);
         // window.location.reload()
         let li = document.createElement('li')
@@ -85,7 +52,8 @@
         myForm.querySelector('input[name=content]').value = ''
       })
     },
-  }
+  })
+
   controller.init.call(controller, view, model)
   // controller.init(view)
 }.call()
