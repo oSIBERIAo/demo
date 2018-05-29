@@ -60,10 +60,7 @@
       });
     },
     bindEvnets: function() {
-      console.log(this.saveMessages);
       let myForm = this.form
-      console.log('myForm-this.model',this.form);
-      console.log('bindEvnets-this.model',this.model);
       this.form.addEventListener('submit', (e)=> {
         e.preventDefault()
         this.saveMessages.call(controller)
