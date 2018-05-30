@@ -1,3 +1,14 @@
+/*
+Controller({
+  init:(){
+  this.xxx()
+  this.yyy()
+},
+  xxx(){}
+  yyy(){}
+})
+*/
+
 window.Controller = function(options) {
   var init = options.init
 
