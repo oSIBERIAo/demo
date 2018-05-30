@@ -1,14 +1,16 @@
 /* 把code写到 #code和style标签里 */
-function writeCode(code) {
+function writeCode(prefix, code, fn) {
   let domCode = document.querySelector('#code')
+  domCode.innerHTML = prefix || ''
   let n = 0
   var id = setInterval( ()=>{
     n += 1
     domCode.innerHTML = code.substring(0, n)
-    domCode.innerHTML = Prism.highlight(domCode.innerHTML, Prism.languages.css, 'css');
-    styleTag.innerHTML = code.substring(0, n)
-    if(n >= result.length ){
+    domCode.innerHTML = Prism.highlight(prefix + code.substring(0, n), Prism.languages.css, 'css');
+    styleTag.innerHTML = prefix + code.substring(0, n)
+    if(n >= code.length ){
       window.clearInterval(id)
+      fn()
     }
   },10)
 }
@@ -57,49 +59,56 @@ html{
 /* ～我需要一张白纸～ */
 
 `
-var n = 0
-var id = setInterval( ()=>{
-  n += 1
-  code.innerHTML = result.substring(0, n)
-  // code.innerHTML = code.innerHTML.replace('html',
-  //   '<span style="color:red;">html</span>')
-  code.innerHTML = Prism.highlight(code.innerHTML, Prism.languages.css, 'css');
-  styleTag.innerHTML = result.substring(0, n)
-  if(n >= result.length ){
-    window.clearInterval(id)
-      console.log('完成');
-      fn2()
-      fn3(result)
-  }
-  // console.log('运行中');
-},10)
-
-function fn2() {
-  var paper = document.createElement('div')
-  paper.id = 'paper'
-  document.body.appendChild(paper)
-}
-
-function fn3(preResult) {
-var result = `
+var result2 = `
 #paper{
   width: 100px; height: 100px;
   background: red;
 }
   `
-  var n = 0
-  var id = setInterval( ()=>{
-    n += 1
-    // console.log(result.substring(0,n))
-    code.innerHTML = preResult + result.substring(0, n)
-    // code.innerHTML = code.innerHTML + result[n-1]
-    code.innerHTML = Prism.highlight(code.innerHTML, Prism.languages.css, 'css');
-    styleTag.innerHTML = preResult + result.substring(0, n)
-    if( n>= result.length){
-      window.clearInterval(id)
-    }
-  }, 10)
+// var n = 0
+// var id = setInterval( ()=>{
+//   n += 1
+//   code.innerHTML = result.substring(0, n)
+//   // code.innerHTML = code.innerHTML.replace('html',
+//   //   '<span style="color:red;">html</span>')
+//   code.innerHTML = Prism.highlight(code.innerHTML, Prism.languages.css, 'css');
+//   styleTag.innerHTML = result.substring(0, n)
+//   if(n >= result.length ){
+//     window.clearInterval(id)
+//       console.log('完成');
+//       fn2()
+//       fn3(result)
+//   }
+//   // console.log('运行中');
+// },10)
+writeCode('', result, ()=>{
+  createPaper( ()=>{
+    writeCode(result, result2, ()=>{})
+  })
+})
+
+
+function createPaper(fn) {
+  var paper = document.createElement('div')
+  paper.id = 'paper'
+  document.body.appendChild(paper)
+  fn()
 }
+
+// function fn3(preResult) {
+//   var n = 0
+//   var id = setInterval( ()=>{
+//     n += 1
+//     // console.log(result.substring(0,n))
+//     code.innerHTML = preResult + result2.substring(0, n)
+//     // code.innerHTML = code.innerHTML + result[n-1]
+//     code.innerHTML = Prism.highlight(code.innerHTML, Prism.languages.css, 'css');
+//     styleTag.innerHTML = preResult + result2.substring(0, n)
+//     if( n>= result2.length){
+//       window.clearInterval(id)
+//     }
+//   }, 10)
+// }
 
 
 
