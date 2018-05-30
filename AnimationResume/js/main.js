@@ -8,12 +8,41 @@ function writeCode(prefix, code, fn) {
     domCode.innerHTML = code.substring(0, n)
     domCode.innerHTML = Prism.highlight(prefix + code.substring(0, n), Prism.languages.css, 'css');
     styleTag.innerHTML = prefix + code.substring(0, n)
+    domCode.scrollTop = domCode.scrollHeight
     if(n >= code.length ){
       window.clearInterval(id)
       fn()
     }
   },10)
 }
+
+function writeMarkdown(markdown, fn) {
+  let domPaper = document.querySelector('#paper > .content')
+  // console.log(domPaper.innerHTML.length);
+  // domPaper.innerHTML = prefix || ''
+  let n = 0
+  var id = setInterval( ()=>{
+    n += 1
+    // domPaper.innerHTML = Prism.highlight(markdown.substring(0, n), Prism.languages.markdown, 'markdown');
+    domPaper.innerHTML = markdown.substring(0, n)
+    domPaper.scrollTop = domPaper.scrollHeight
+    // console.log(domPaper.length);
+    if(n >= md.length){
+      window.clearInterval(id)
+      console.log('222');
+      fn()
+    }
+  },10)
+}
+function markdownToHtml(element) {
+  console.log('到这里了');
+  console.log(element);
+  document.getElementById(element).innerHTML =
+    marked(md);
+}
+
+
+
 
 var result = `/*
  * 👋你好👋
@@ -58,13 +87,81 @@ html{
 
 /* ～我需要一张白纸～ */
 
+#code{
+  position: fixed;
+  left: 0;
+  width: 50%;
+  height 100%;
+}
+#paper{
+  position: fixed;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#paper > .content{
+  background: white;
+  width: 90%;
+  height: 95%;
+}
 `
 var result2 = `
 #paper{
-  width: 100px; height: 100px;
-  background: red;
 }
-  `
+/* ～接下来把 Mackdown 变成 HTML - marked.js ～ */
+/* ～接下来把 HTML 加样式～ */
+`
+var md = `
+# 自我介绍
+
+我叫xxx
+
+公元前出生
+希望应聘前端开发岗位
+
+# 技能介绍
+
+熟悉 JavaScript CSS
+
+# 项目介绍
+
+#### 轮播图
+#### 个人简历网站
+#### 简约画板
+`
+
+
+
+writeCode('', result, ()=>{
+  createPaper( ()=>{
+    writeCode(result, result2, ()=>{
+      writeMarkdown(md, ()=>{
+        markdownToHtml('content')
+      })
+    })
+  })
+})
+
+
+
+function createPaper(fn) {
+  var paper = document.createElement('div')
+  paper.id = 'paper'
+  var content = document.createElement('pre')
+  content.setAttribute('class', 'content')
+  content.setAttribute('id', 'content')
+  paper.appendChild(content)
+  document.body.appendChild(paper)
+  fn.call()
+}
+
+
+
+
 // var n = 0
 // var id = setInterval( ()=>{
 //   n += 1
@@ -81,43 +178,6 @@ var result2 = `
 //   }
 //   // console.log('运行中');
 // },10)
-writeCode('', result, ()=>{
-  createPaper( ()=>{
-    writeCode(result, result2, ()=>{})
-  })
-})
-
-
-function createPaper(fn) {
-  var paper = document.createElement('div')
-  paper.id = 'paper'
-  document.body.appendChild(paper)
-  fn()
-}
-
-// function fn3(preResult) {
-//   var n = 0
-//   var id = setInterval( ()=>{
-//     n += 1
-//     // console.log(result.substring(0,n))
-//     code.innerHTML = preResult + result2.substring(0, n)
-//     // code.innerHTML = code.innerHTML + result[n-1]
-//     code.innerHTML = Prism.highlight(code.innerHTML, Prism.languages.css, 'css');
-//     styleTag.innerHTML = preResult + result2.substring(0, n)
-//     if( n>= result2.length){
-//       window.clearInterval(id)
-//     }
-//   }, 10)
-// }
-
-
-
-
-
-
-
-
-
 
 /*
 // The code snippet you want to highlight, as a string
