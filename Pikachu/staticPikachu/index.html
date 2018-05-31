@@ -5,21 +5,35 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>Pikachu</title>
   <link rel="stylesheet" href="./style.css">
-  <style>
-  </style>
+  <style id='styleTag'></style>
 </head>
 <body>
-  <div class="wrapper">
-    <div class="nose"></div>
-    <div class="eye left"></div>
-    <div class="eye right"></div>
-    <div class="face left"></div>
-    <div class="face right"></div>
-    <div class="upperLip left"></div>
-    <div class="upperLip right"></div>
-    <div class="lowerLip-wrapper">
-      <div class="lowerLip"></div>
+  <div class="actions">
+    <button data-speed="slow">慢</button>
+    <button data-speed="normal">中</button>
+    <button data-speed="fast">快</button>
+    <button data-speed="end">终</button>
+  </div>
+  <div class="preview-wrapper">
+    <div class="preview">
+      <div class="wrapper">
+        <div class="nose"></div>
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="face left"></div>
+        <div class="face right"></div>
+        <div class="upperLip left"></div>
+        <div class="upperLip right"></div>
+        <div class="lowerLip-wrapper">
+          <div class="lowerLip"></div>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="code-wrapper">
+    <pre id="code" class="code"></pre>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
+  <script src="./main.js" charset="utf-8"></script>
 </body>
 </html>
