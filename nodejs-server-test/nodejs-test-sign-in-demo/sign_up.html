@@ -9,31 +9,101 @@
     *{margin: 0;padding: 0;}
     *{box-sizing: border-box;}
     body{
-      border: 1px solid black;
+      border: 1px solid #DDD;
       padding: 50px;
       min-height: 100vh;
-      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .form-wrapper{
+      padding: 20px;
+      border:  1px solid #DDD;
+    }
+    .form-wrapper .row {
+      margin:  10px 0;
+    }
+    .form-wrapper .row >label{
+      display: inline-block;
+      min-width: 350px;
     }
   </style>
 </head>
 <body>
-  <h1>注册</h1>
-  <form>
-    <div class="row">
-      <label for="email">邮箱📮</label>
-      <input type="text" name="email" id="email" value="">
-    </div>
-    <div class="row">
-      <label for="email">密码🔒</label>
-      <input type="password" name="password" id="password" value="">
-    </div>
-    <div class="row">
-      <label for="email">确认密码🔒</label>
-      <input type="password" name="password_confirmation" id="password_confirmation" value="">
-    </div>
-    <div class="row">
-        <input type="submit" value="注册">
-    </div>
-  </form>
+  <div class="form-wrapper">
+    <h1>注册</h1>
+    <form id="signUpForm">
+      <div class="row">
+        <label for="email">邮箱📮</label>
+        <input type="text" name="email" id="email" value="">
+        <span class="error"></span>
+      </div>
+      <div class="row">
+        <label for="email">密码🔒</label>
+        <input type="password" name="password" id="password" value="">
+        <span class="error"></span>
+      </div>
+      <div class="row">
+        <label for="email">确认密码🔒</label>
+        <input type="password" name="password_confirmation" id="password_confirmation" value="">
+        <span class="error"></span>
+      </div>
+      <div class="row">
+          <input type="submit" value="注册">
+      </div>
+    </form>
+  </div>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="./main.js"></script>
+  <script type="text/javascript">
+    let $form = $('#signUpForm')
+    $('#signUpForm').on('submit', (e)=>{
+      let hash = {}
+      e.preventDefault()
+      let need = ['email', 'password', 'password_confirmation']
+      need.forEach( (name)=>{
+        let value = $form.find(`[name=${name}]`).val()
+        hash[name] = value
+      })
+
+      $form.find('.error').each( (index, span)=>{
+        $(span).text('')
+      })
+
+      if (hash['email'] === '') {
+        $form.find('[name="email"]').siblings('.error')
+         .text('请输入邮箱')
+         return
+      }
+      if (hash['password'] === '') {
+        $form.find('[name="password"]').siblings('.error')
+         .text('请输入密码')
+         return
+      }
+      if (hash['password'] !== hash['password_confirmation']) {
+        $form.find('[name="password_confirmation"]').siblings('.error')
+         .text('密码不一致')
+         return
+      }
+
+      $.post('/sign_up', hash)
+        .then( ()=>{
+          console.log('success');
+        }, (request, b, c)=>{
+          console.log(request, b, c);
+          console.log('error');
+          console.log(request.responseJSON);
+          let {errors} = request.responseJSON
+          if (errors.email && errors.email === 'invalid') {
+            // alert('❌邮箱输错了❌')
+            $form.find('[name="email"]').siblings('.error')
+              .text('❌邮箱输错了❌')
+          }
+          // let object = JSON.parse(request.responseText)
+          // let {errors} = object
+          // console.log(object);
+        })
+    })
+  </script>
 </body>
 </html>
