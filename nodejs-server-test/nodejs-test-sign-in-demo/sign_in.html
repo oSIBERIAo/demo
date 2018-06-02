@@ -31,8 +31,8 @@
 </head>
 <body>
   <div class="form-wrapper">
-    <h1>注册</h1>
-    <form id="signUpForm">
+    <h1>登陆</h1>
+    <form id="signInForm">
       <div class="row">
         <label for="email">邮箱📮</label>
         <input type="text" name="email" id="email" autocomplete='tel' value="">
@@ -44,23 +44,18 @@
         <span class="error"></span>
       </div>
       <div class="row">
-        <label for="email">确认密码🔒</label>
-        <input type="password" name="password_confirmation" id="password_confirmation" autocomplete='tel' value="">
-        <span class="error"></span>
-      </div>
-      <div class="row">
-          <input type="submit" value="注册">
+          <input type="submit" value="登陆">
       </div>
     </form>
   </div>
   <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
   <script src="./main.js"></script>
   <script type="text/javascript">
-    let $form = $('#signUpForm')
-    $('#signUpForm').on('submit', (e)=>{
+    let $form = $('#signInForm')
+    $('#signInForm').on('submit', (e)=>{
       let hash = {}
       e.preventDefault()
-      let need = ['email', 'password', 'password_confirmation']
+      let need = ['email', 'password']
       need.forEach( (name)=>{
         let value = $form.find(`[name=${name}]`).val()
         hash[name] = value
@@ -80,33 +75,22 @@
          .text('请输入密码')
          return
       }
-      if (hash['password'] !== hash['password_confirmation']) {
-        $form.find('[name="password_confirmation"]').siblings('.error')
-         .text('密码不一致')
-         return
-      }
 
-      $.post('/sign_up', hash)
-        .then( ()=>{
-          console.log('success');
-          window.location.href = '/sign_in'
+      $.post('/sign_in', hash)
+        .then( (response)=>{
+          console.log(response);
+          window.location.href = '/'
         }, (request, b, c)=>{
           console.log(request, b, c);
-          console.log('error');
-          console.log(request.responseJSON);
-          let {errors} = request.responseJSON
-          if (errors.email && errors.email === 'invalid') {
-            // alert('❌邮箱输错了❌')
-            $form.find('[name="email"]').siblings('.error')
-              .text('❌邮箱输错了❌')
-          } else if(errors.users && errors.users === 'ture') {
-            // alert('❌邮箱输错了❌')
-            $form.find('[name="email"]').siblings('.error')
-              .text('❌账户已存在❌')
-          }
-          // let object = JSON.parse(request.responseText)
-          // let {errors} = object
-          // console.log(object);
+          alert('❌邮箱密码输错了❌')
+          // console.log('error');
+          // console.log(request.responseJSON);
+          // let {errors} = request.responseJSON
+          // if (errors.email && errors.email === 'invalid') {
+          //   // alert('❌邮箱输错了❌')
+          //   $form.find('[name="email"]').siblings('.error')
+          //     .text('❌错了❌')
+          // }
         })
     })
   </script>
