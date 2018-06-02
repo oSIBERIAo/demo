@@ -9,7 +9,15 @@
 </head>
 <body>
   <p>😄😄登陆成功😄😄</p>
+  <h1>你的用户名： __user__</h1>
   <h1>你的密码是： __password__</h1>
   <script src="./main.js"></script>
+  <script>
+    let already = localStorage.getItem('已经提示了')
+    if (!already) {
+      alert('你好，我们的网站改版了，有了这些新功能：...')
+      localStorage.setItem('已经提示了', true)
+    }
+  </script>
 </body>
 </html>
