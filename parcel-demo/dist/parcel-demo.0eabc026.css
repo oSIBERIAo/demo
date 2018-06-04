@@ -1,0 +1,8 @@
+body{
+   background: #b7b7b7;
+}
+body {
+  display: flex; }
+  body p {
+    background: red;
+    height: 100px; }
