@@ -1,37 +1,70 @@
 <!DOCTYPE html>
 <html lang="zh-Hans" dir="ltr">
   <head>
+    <meta http-equiv="refresh" content="1">
     <meta charset="utf-8">
     <title>管理页面</title>
+    <link rel="stylesheet" href="./css/default.css">
   </head>
-  <style>
-    *{margin: 0; padding: 0;}
-    #yyy{
-      padding: 50px 20px;
-      border-radius: 5px;
-      border: 1px dashed #c7c7c7;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-    #xxx{
-      border-color: darkgray;
-      border-style: solid;
-      border-radius: 2px;
-      border-width: 1px;
-      padding: 6px 7px 6px;
 
-    }
-  </style>
   <body>
-
-  <div id="yyy">
-    <button id="xxx">点击或拖拽文件</button>
-    <p>文件大小不能超过20MB</p>
+  <div class="page">
+    <aside class="siderBar">
+      <div class="newSong">
+        新建歌曲
+      </div>
+      <ul class="songList">
+        <li>歌曲1</li>
+        <li class="active">歌曲2</li>
+        <li>歌曲3</li>
+        <li>歌曲4</li>
+        <li>歌曲5</li>
+        <li>歌曲6</li>
+        <li>歌曲7</li>
+        <li>歌曲8</li>
+        <li>歌曲9</li>
+        <li>歌曲10</li>
+      </ul>
+      <div class="uploadArea">
+        <div id="yyy">
+          <button id="xxx">点击或拖拽文件</button>
+          <p>文件大小不能超过20MB</p>
+        </div>
+      </div>
+    </aside>
+    <main>
+      <form class="form">
+        <div class="row">
+          <label>
+            歌名
+            <input type="text">
+          </label>
+        </div>
+        <div class="row">
+          <label>
+            歌手
+            <input type="text">
+          </label>
+        </div>
+        <div class="row">
+          <label>
+            外链
+            <input type="text">
+          </label>
+        </div>
+        <div class="row">
+          <button type="submit">保存</button>
+        </div>
+      </form>
+    </main>
   </div>
-  <div id="uploadStatus">
 
+
+
+
+
+
+  <div id="uploadStatus">
   </div>
 
   <audio controls src="http://p9xwb5nr1.bkt.clouddn.com/worst%20of%20you.mp3">
