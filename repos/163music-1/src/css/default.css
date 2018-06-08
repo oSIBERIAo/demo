@@ -5,6 +5,8 @@
 *::before{box-sizing: border-box;}
 ul,ol{list-style: none;}
 a{color: inherit; text-decoration: none;}
+input{font: inherit}
+
 body{
   font-size: 12px;
   line-height: 1.5;
@@ -22,7 +24,7 @@ body{
 }
 .page > main {
   flex-grow: 1;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
 }
 
 /* aside */
@@ -56,10 +58,7 @@ body{
 
 
 
-
-
-
-#yyy{
+.draggable{
   padding: 50px 0px;
   border-radius: 5px;
   border: 1px dashed #c7c7c7;
@@ -68,10 +67,54 @@ body{
   justify-content: center;
   flex-direction: column;
 }
-#xxx{
+.clickable{
   border-color: darkgray;
   border-style: solid;
   border-radius: 2px;
   border-width: 1px;
   padding: 6px 7px 6px;
+}
+
+
+
+/* main */
+
+.page > main {
+  background: #fdfdfd;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+.form{
+  /* border: 1px solid #ddd; */
+}
+.form > .row{
+  margin: 15px 0;
+  display: flex;
+}
+.form > .row > label{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 3em;
+  margin-right: 5px;
+}
+.form > .row.actions{
+  margin-left: 42px;
+}
+.form input[type=text]{
+  padding:  18px 5px;
+  border-radius: 2px;
+  border: 1px solid #ddd;
+  height: 30px;
+}
+.form button{
+  height: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.page > main {
+
+}
+.page > main > .form{
+
 }
