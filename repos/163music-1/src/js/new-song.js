@@ -1,4 +1,5 @@
 {
+
   let view = {
     el: '.newSong',
     template:`
@@ -6,17 +7,22 @@
     `,
     render(data){
       $(this.el).html(this.template)
-    }
+    },
+    addActive(){
+      $(this.el).addClass('active')
+    },
   }
+  console.log('sadklfjlaskdjflkasjdf');
   let model = {}
   let controller = {
     init(view, model){
       this.view = view
       this.model = model
-      // console.log('this',this);
-      // console.log('model',model);
-      // console.log('this.model.data',this.model.data);
       this.view.render(this.model.data)
+      this.view.addActive()
+      window.eventHub.on('upload', ()=>{
+        this.view.addActive()
+      })
     }
   }
   controller.init(view, model)

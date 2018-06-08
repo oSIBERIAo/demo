@@ -5,6 +5,7 @@
       return $(this.el).find(selector)[0]
     },
   }
+
   let model = {}
   let controller = {
     init(view, model){
@@ -46,6 +47,7 @@
                       // 每个文件上传前,处理相关的事情
                },
                'UploadProgress': function(up, file) {
+                 console.log('上传中');
                  // uploadStatus.textContent = '上传中'
                       // 每个文件上传时,处理相关的事情
                },
@@ -54,10 +56,14 @@
                  var domain = up.getOption('domain');
                  var response = JSON.parse(info.response)
                  var sourceLink = 'http://' + domain + '/' + encodeURIComponent(response.key)
-                 console.log(domain);
-                 console.log(response);
-                 console.log(sourceLink);
+                 console.log('domain', domain);
+                 console.log('response', response);
+                 console.log('sourceLink', sourceLink);
                  uploadStatus.textContent = sourceLink + '' + response.key
+                 window.eventHub.emit('upload', {
+                   link: sourceLink,
+                   key: response.key
+                 })
                       // 每个文件上传成功后,处理相关的事情
                       // 其中 info.response 是文件上传成功后，服务端返回的json，形式如
                       // {
