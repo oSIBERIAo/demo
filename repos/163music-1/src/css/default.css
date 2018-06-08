@@ -41,16 +41,18 @@ body{
   text-align: center;
 }
 
-.page > aside > .songList{
+#songList-container{
   flex-grow: 1;
+}
+.page > aside >  #songList-container > .songList{
   text-align: center;
   border-top: 1px solid #999;
 }
 
-.page > aside > .songList > li.active{
+.page > aside > #songList-container > .songList > li.active{
   background: #d4d4d4;
 }
-.page > aside > .songList > li{
+.page > aside > #songList-container > .songList > li{
   text-align: left;
   border-bottom: 1px solid #ddd;
   padding: 10px;
