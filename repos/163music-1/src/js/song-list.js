@@ -24,7 +24,6 @@
     },
     activeItem(li){
       let $li = $(li)
-      console.log('$li', $li);
       $li.addClass('active')
         .siblings('.active').removeClass('active')
     },
@@ -41,7 +40,7 @@
       return query.find().then((songs)=> {
         this.data.songs = songs.map((song)=>{
           return {id: song.id, ...song.attributes}
-          console.log('this.data.songs', this.data.songs);
+          // console.log('this.data.songs', this.data.songs);
         })
         return songs
       }, function (error) {})
@@ -67,7 +66,7 @@
     },
     getAllSongs(){
       return this.model.find().then(()=>{
-        console.log('this.model.data', this.model.data);
+        // console.log('this.model.data', this.model.data);
         this.view.render(this.model.data)
       })
     },
@@ -75,7 +74,17 @@
       $(this.view.el).on('click', 'li', (e)=>{
          this.view.activeItem(e.currentTarget)
          let songId = e.currentTarget.getAttribute('data-song-id')
-         window.eventHub.emit('select', {id:songId})
+         let data
+         let songs = this.model.data.songs
+         for (var i = 0; i < songs.length; i++) {
+           if (songs[i].id === songId) {
+             data = songs[i]
+             break
+           }
+         }
+         //深拷贝
+         let object = JSON.parse(JSON.stringify(data))
+         window.eventHub.emit('select', object)
       })
     },
     bindEventsHub(){
