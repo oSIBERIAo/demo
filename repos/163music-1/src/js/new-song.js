@@ -12,7 +12,7 @@
       $(this.el).addClass('active')
     },
   }
-  console.log('sadklfjlaskdjflkasjdf');
+
   let model = {}
   let controller = {
     init(view, model){
