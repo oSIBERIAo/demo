@@ -48,6 +48,12 @@
                },
                'UploadProgress': function(up, file) {
                  console.log('上传中');
+                 window.eventHub.emit('new', {
+                   url: '',
+                   name: '',
+                   // id: '',
+                   singer: '',
+                 })
                  // uploadStatus.textContent = '上传中'
                       // 每个文件上传时,处理相关的事情
                },
@@ -60,7 +66,7 @@
                  console.log('response', response);
                  console.log('sourceLink', sourceLink);
                  uploadStatus.textContent = sourceLink + '' + response.key
-                 window.eventHub.emit('upload', {
+                 window.eventHub.emit('new', {
                    url: sourceLink,
                    name: response.key
                  })

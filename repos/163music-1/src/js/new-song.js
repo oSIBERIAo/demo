@@ -10,7 +10,6 @@
     },
     addActive(){
       $(this.el).addClass('active')
-      window.eventHub.emit('new')
     },
     clearActive(){
       $(this.el).removeClass('active')
@@ -26,7 +25,7 @@
       this.view.addActive()
       this.bindEvents()
 
-      window.eventHub.on('upload', ()=>{
+      window.eventHub.on('new', ()=>{
         this.view.addActive()
       })
       window.eventHub.on('select', (data)=>{
@@ -36,7 +35,9 @@
       // $(this.view.el).on('click', ()=>{this.view.addActive()})
     },
     bindEvents(){
-        $(this.view.el).on('click', ()=>{this.view.addActive()})
+        $(this.view.el).on('click', ()=>{
+          window.eventHub.emit('new')
+        })
     }
   }
   controller.init(view, model)

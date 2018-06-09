@@ -89,7 +89,7 @@
       })
     },
     bindEventsHub(){
-      window.eventHub.on('upload', ()=>{
+      window.eventHub.on('new', ()=>{
         this.view.clearActive()
       })
       window.eventHub.on('create', (songData)=>{
@@ -98,9 +98,6 @@
         // console.log('this.model', this.model);
         this.model.data.songs.push(songData)
         this.view.render(this.model.data)
-      })
-      window.eventHub.on('new', ()=>{
-        this.view.clearActive()
       })
     }
 
