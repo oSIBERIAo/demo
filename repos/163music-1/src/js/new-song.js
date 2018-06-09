@@ -10,6 +10,7 @@
     },
     addActive(){
       $(this.el).addClass('active')
+      window.eventHub.emit('new')
     },
     clearActive(){
       $(this.el).removeClass('active')
@@ -23,6 +24,8 @@
       this.model = model
       this.view.render(this.model.data)
       this.view.addActive()
+      this.bindEvents()
+
       window.eventHub.on('upload', ()=>{
         this.view.addActive()
       })
@@ -30,6 +33,10 @@
         console.log(data.id);
         this.view.clearActive()
       })
+      // $(this.view.el).on('click', ()=>{this.view.addActive()})
+    },
+    bindEvents(){
+        $(this.view.el).on('click', ()=>{this.view.addActive()})
     }
   }
   controller.init(view, model)
