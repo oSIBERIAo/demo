@@ -11,6 +11,9 @@
     addActive(){
       $(this.el).addClass('active')
     },
+    clearActive(){
+      $(this.el).removeClass('active')
+    },
   }
 
   let model = {}
@@ -22,6 +25,10 @@
       this.view.addActive()
       window.eventHub.on('upload', ()=>{
         this.view.addActive()
+      })
+      window.eventHub.on('select', (data)=>{
+        console.log(data.id);
+        this.view.clearActive()
       })
     }
   }
