@@ -10,7 +10,8 @@
       let $el = $(this.el)
       $el.html(this.template)
       let {songs} = data
-      // console.log({songs})
+      console.log('{songs}', {songs})
+      console.log('songs', songs)
       let liList = songs.map((song)=>
         $('<li></li>').text(song.name)
         .attr('data-song-id', song.id)
@@ -97,6 +98,15 @@
         // console.log('this.model.data', this.model.data);
         // console.log('this.model', this.model);
         this.model.data.songs.push(songData)
+        this.view.render(this.model.data)
+      })
+      window.eventHub.on('update', (song)=>{
+        let songs = this.model.data.songs
+        for (let i = 0; i < songs.length; i++) {
+          if (songs[i].id === song.id) {
+            Object.assign(songs[i], song)
+          }
+        }
         this.view.render(this.model.data)
       })
     }
