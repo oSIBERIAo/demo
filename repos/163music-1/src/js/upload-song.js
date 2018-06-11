@@ -1,3 +1,4 @@
+window.x = 'open'
 {
   let view = {
     el: '.uploadArea',
@@ -6,7 +7,11 @@
     },
   }
 
-  let model = {}
+  let model = {
+    data: {
+      status: 'open'
+    }
+  }
   let controller = {
     init(view, model){
       this.view = view
@@ -38,16 +43,22 @@
            chunk_size: '20mb',                //分块上传时，每片的体积
            auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
            init: {
-               'FilesAdded': function(up, files) {
+               'FilesAdded': (up, files)=>{
                    plupload.each(files, function(file) {
                        // 文件添加进队列后,处理相关的事情
                    });
                },
-               'BeforeUpload': function(up, file) {
+               'BeforeUpload': (up, file)=>{
                  window.eventHub.emit('beforeUpload')
+                 if (this.model.data.status === 'closed') {
+                   return false
+                 } else {
+                   this.model.data.status = 'closed'
+                   return true
+                 }
                       // 每个文件上传前,处理相关的事情
                },
-               'UploadProgress': function(up, file) {
+               'UploadProgress': (up, file)=>{
                  console.log('上传中');
                  window.eventHub.emit('new', {
                    url: '',
@@ -58,8 +69,9 @@
                  // uploadStatus.textContent = '上传中'
                       // 每个文件上传时,处理相关的事情
                },
-               'FileUploaded': function(up, file, info) {
+               'FileUploaded': (up, file, info)=>{
                  window.eventHub.emit('afterUpload')
+                 this.model.data.status = 'open'
                  var domain = up.getOption('domain');
                  var response = JSON.parse(info.response)
                  var sourceLink = 'http://' + domain + '/' + encodeURIComponent(response.key)
@@ -83,10 +95,11 @@
                       // var res = parseJSON(info.response);
                       // var sourceLink = domain + res.key; 获取上传成功后的文件的Url
                },
-               'Error': function(up, err, errTip) {
+               'Error': (up, err, errTip)=>{
+                 this.model.data.status = 'open'
                       //上传出错时,处理相关的事情
                },
-               'UploadComplete': function() {
+               'UploadComplete': ()=>{
                       //队列文件处理完毕后,处理相关的事情
                },
                // 'Key': function(up, file) {
