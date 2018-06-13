@@ -1,10 +1,10 @@
 *{margin:0; padding: 0; box-sizing: border-box;}
 *::before, *::after{box-sizing: border-box; }
-
+body{overflow:hidden}
 @keyframes circle{0% {transform: rotate(0deg); } 100% {transform: rotate(360deg); } }
 
 .page{display: flex; flex-direction: column; height: 100vh;
-	background: transparent url(http://p3.music.126.net/z4p2xss2a50qNHe6TLFdoA==/2425522650910827.jpg) no-repeat center;
+	/* background: transparent url(http://p3.music.126.net/z4p2xss2a50qNHe6TLFdoA==/2425522650910827.jpg) no-repeat center; */
 	background-size: cover;
 }
 
@@ -79,4 +79,20 @@
 .page > .links > a.main{
 	background: #D43B32;
 	color: white;
-}	
+}
+
+.page::before{
+	content: '';
+	position: absolute;
+	background: inherit;
+	background-size:cover;
+	background-position: 50%;
+	/* background-image: url(${song.cover}); */
+	width: 100vw;
+	height: 100vh;
+	filter: blur(15px);
+	transform: scale(1.1);
+	opacity: 1;
+	z-index: -1;
+	overflow: hidden;
+}

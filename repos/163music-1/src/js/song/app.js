@@ -1,25 +1,55 @@
 {
   let view = {
     el: '#app',
+    render(data){
+      let {song, status} = data
+
+      if ($(this.el).find('audio').attr('src') !== song.url) {
+        // console.log("$(this.el).find('audio').attr('src')", $(this.el).find('audio').attr('src'));
+        $(this.el).append(`<style>
+          .page::before{background-image: url(${song.cover});}
+        </style>`);
+        // console.log('123123', $(this.el).find('audio').attr('src'));
+        $(this.el).find('audio').attr('src', song.url)
+      }
+      $(this.el).find('img.cover').attr('src', song.cover)
+      if (status === 'playing') {
+        $(this.el).find('.disc-container').addClass('playing')
+      } else {
+        $(this.el).find('.disc-container').removeClass('playing')
+      }
+    },
+    play(){
+      $(this.el).find('audio')[0].play()
+      console.log('播放');
+    },
+    pause(){
+      $(this.el).find('audio')[0].pause()
+      console.log('暂停');
+    },
   }
   let model = {
     data: {
-      id: '',
-      name: '',
-      singer: '',
-      url: '',
+      song:{
+        id: '',
+        name: '',
+        singer: '',
+        url: '',
+        cover: '',
+      },
+      status: 'paused',
     },
-    status: 'paused',
-    },
-    get(){
+    get(id){
       var query = new AV.Query('Song');
-      // console.log('this.data.id', this.data.id);
-       return query.get(this.data.id).then((song)=>{
-         // console.log('song', song);
-         Object.assign(this.data, {id: song.id, ...song.attributes})
+       console.log(id);
+       return query.get(id).then((song)=>{
+         console.log(id);
+         console.log(song);
+         Object.assign(this.data.song, {id: song.id, ...song.attributes})
          return song
        }, function (error) {
          // 异常处理
+         console.log('异常处理');
        });
     },
   }
@@ -29,15 +59,23 @@
       this.model = model
       let id = this.getSongId()
 
-      this.model.setId(id)
-      this.model.get().then(()=>{
-        console.log('this.model.data', this.model.data);
+      this.model.get(id).then(()=>{
         this.view.render(this.model.data)
-        this.view.play()
+        // this.view.play()
       })
       this.bindEvents()
     },
     bindEvents(){
+      $(this.view.el).on('click', '.icon-play', ()=>{
+        this.model.data.status = 'playing'
+        this.view.render(this.model.data)
+        this.view.play()
+      })
+      $(this.view.el).on('click', '.icon-pause', ()=>{
+        this.model.data.status = 'paused'
+        this.view.render(this.model.data)
+        this.view.pause()
+      })
     },
     getSongId(){
       let search = window.location.search
