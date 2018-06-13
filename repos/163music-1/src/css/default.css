@@ -20,7 +20,7 @@ body{
   height: 100vh;
   width: 100vh;
   position: relative;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 .page > aside {
   width: 200px;
@@ -119,6 +119,8 @@ body{
   height: 30px;
   padding-left: 20px;
   padding-right: 20px;
+  background-color: rgb(216, 216, 216);
+  border:1px solid darkgray;
 }
 .page > main {
 
