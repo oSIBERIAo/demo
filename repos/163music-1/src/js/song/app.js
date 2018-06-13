@@ -1,24 +1,6 @@
 {
   let view = {
     el: '#app',
-    template: `
-     <audio controls src={{url}}></audio>
-     <div>
-       <button class="play">播放</button>
-       <button class="pause">暂停</button>
-     </div>
-    `,
-    render(data){
-      $(this.el).html(this.template.replace('{{url}}', data.url))
-    },
-    play(){
-      let audio = $(this.el).find('audio')[0]
-      audio.play()
-    },
-    pause(){
-      let audio = $(this.el).find('audio')[0]
-      audio.pause()
-    },
   }
   let model = {
     data: {
@@ -27,15 +9,13 @@
       singer: '',
       url: '',
     },
-    setId(id){
-      this.data.id = id
-      console.log('id', id);
+    status: 'paused',
     },
     get(){
       var query = new AV.Query('Song');
-      console.log('this.data.id', this.data.id);
+      // console.log('this.data.id', this.data.id);
        return query.get(this.data.id).then((song)=>{
-         console.log('song', song);
+         // console.log('song', song);
          Object.assign(this.data, {id: song.id, ...song.attributes})
          return song
        }, function (error) {
@@ -53,19 +33,11 @@
       this.model.get().then(()=>{
         console.log('this.model.data', this.model.data);
         this.view.render(this.model.data)
-        // setTimeout(()=>{
-        //   this.view.play()
-        // },3000)
+        this.view.play()
       })
       this.bindEvents()
     },
     bindEvents(){
-      $(this.view.el).on('click', '.play', ()=>{
-        this.view.play()
-      })
-      $(this.view.el).on('click', '.pause', ()=>{
-        this.view.pause()
-      })
     },
     getSongId(){
       let search = window.location.search

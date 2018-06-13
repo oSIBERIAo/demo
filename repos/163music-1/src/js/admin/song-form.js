@@ -24,13 +24,19 @@
         </label>
         <input name="url" type="text" value="__url__">
       </div>
+      <div class="row">
+        <label>
+          封面
+        </label>
+        <input name="cover" type="text" value="__cover__">
+      </div>
       <div class="row actions">
         <button type="submit">保存</button>
       </div>
     </form>
     `,
     render(data = {}){
-      let placeholders = ['name', 'url', 'singer', 'id']
+      let placeholders = ['name', 'url', 'singer', 'id', 'cover']
       let html = this.template
       placeholders.map((string)=>{
         html = html.replace(`__${string}__`, data[string] || '')
@@ -52,12 +58,14 @@
       singer: '',
       url: '',
       id: '',
+      cover: '',
     },
     update(data){
       var song = AV.Object.createWithoutData('Song', this.data.id);
       song.set('name', data.name);
       song.set('singer', data.singer);
       song.set('url', data.url);
+      song.set('cover', data.cover);
       return song.save().then((response)=>{
         Object.assign(this.data, data)
         return response
@@ -71,6 +79,7 @@
       song.set('name', data.name);
       song.set('singer', data.singer);
       song.set('url', data.url);
+      song.set('cover', data.cover);
       // 设置优先级
       // song.set('priority',1);
       return song.save().then( (newSong)=>{
@@ -138,7 +147,7 @@
         })
     },
     update(){
-      let needs = 'name singer url'.split(' ')
+      let needs = 'name singer url cover'.split(' ')
       let data = {}
       needs.map((string)=>{
         data[string] = this.view.$el.find(`[name="${string}"]`).val()
@@ -156,6 +165,7 @@
         if (this.model.data.id) {
           this.update()
           console.log('有Id');
+          console.log(this.model.data);
         } else {
           this.create()
           console.log('无Id');
