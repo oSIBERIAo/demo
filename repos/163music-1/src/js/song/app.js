@@ -1,30 +1,52 @@
 {
   let view = {
     el: '#app',
+    init(){
+      this.$el = $(this.el)
+    },
     render(data){
       let {song, status} = data
 
-      if ($(this.el).find('audio').attr('src') !== song.url) {
-        // console.log("$(this.el).find('audio').attr('src')", $(this.el).find('audio').attr('src'));
-        $(this.el).append(`<style>
+      if (this.$el.find('audio').attr('src') !== song.url) {
+        // console.log("this.$el.find('audio').attr('src')", this.$el.find('audio').attr('src'));
+        this.$el.append(`<style>
           .page::before{background-image: url(${song.cover});}
         </style>`);
-        // console.log('123123', $(this.el).find('audio').attr('src'));
-        $(this.el).find('audio').attr('src', song.url)
+        // console.log('123123', this.$el.find('audio').attr('src'));
+        this.$el.find('audio').attr('src', song.url)
+        this.$el.find('audio')[0].onended = ()=>{
+          window.eventHub.emit('songEnd')
+        }
       }
-      $(this.el).find('img.cover').attr('src', song.cover)
+      this.$el.find('img.cover').attr('src', song.cover)
       if (status === 'playing') {
-        $(this.el).find('.disc-container').addClass('playing')
+        this.$el.find('.disc-container').addClass('playing')
       } else {
-        $(this.el).find('.disc-container').removeClass('playing')
+        this.$el.find('.disc-container').removeClass('playing')
       }
+      this.$el.find('.song-description > h1').text(song.name)
+      let {lyrics} = song
+      lyrics.split('\n').map((string)=>{
+        let p = document.createElement('p')
+        //正则
+        let regex = /\[([\d:.]+)\](.+)/
+        let matches = string.match(regex)
+        console.log(matches);
+        if (matches) {
+          p.textContent = matches[2]
+          p.setAttribute('data-time', match[1])
+        } else {
+          p.textContent = string
+        }
+        this.$el.find('.lyric > .lines').append(p)
+      })
     },
     play(){
-      $(this.el).find('audio')[0].play()
+      this.$el.find('audio')[0].play()
       console.log('播放');
     },
     pause(){
-      $(this.el).find('audio')[0].pause()
+      this.$el.find('audio')[0].pause()
       console.log('暂停');
     },
   }
@@ -36,6 +58,7 @@
         singer: '',
         url: '',
         cover: '',
+        lyrics: '',
       },
       status: 'paused',
     },
@@ -53,11 +76,13 @@
   let controller = {
     init(view, model){
       this.view = view
+      this.view.init()
       this.model = model
       let id = this.getSongId()
 
       this.model.get(id).then(()=>{
         this.view.render(this.model.data)
+        // console.log(this,model.data.song.lyrics);
         // this.view.play()
       })
       this.bindEvents()
@@ -72,6 +97,10 @@
         this.model.data.status = 'paused'
         this.view.render(this.model.data)
         this.view.pause()
+      })
+      window.eventHub.on('songEnd', ()=>{
+        this.model.data.status = 'paused'
+        this.view.render(this.model.data)
       })
     },
     getSongId(){

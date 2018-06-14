@@ -169,3 +169,10 @@ body{
   animation: loading 2s infinite alternate-reverse;
   animation-timing-function: linear;
 }
+textarea{
+  width: 500px;
+  height: 190px;
+  border: 1px solid #ddd;
+  padding: 18px 5px;
+  border-radius: 2px;
+}
