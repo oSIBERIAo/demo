@@ -81,6 +81,9 @@ body{overflow:hidden}
 	color: white;
 }
 
+.page{
+	background-color: rgba(0,0,0,.5);
+}
 .page::before{
 	content: '';
 	position: absolute;
@@ -88,6 +91,25 @@ body{overflow:hidden}
 	background-size:cover;
 	background-position: 50%;
 	/* background-image: url(${song.cover}); */
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	/* filter: blur(2px); */
+	/* transform: scale(1.1); */
+	opacity: 1;
+	z-index: -2;
+	overflow: hidden;
+}
+.page::after{
+	content: '';
+	position: absolute;
+	background: inherit;
+	background-size:cover;
+	background-position: 50%;
+	/* background-image: url(${song.cover}); */
+	top: 0;
+	left: 0;
 	width: 100vw;
 	height: 100vh;
 	filter: blur(5px);
