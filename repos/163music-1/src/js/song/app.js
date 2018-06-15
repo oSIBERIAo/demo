@@ -48,6 +48,8 @@
       } else {
         this.$el.find('.disc-container').removeClass('playing')
         // document.getElementsByClassName('disc-container')[0].classList.remove('playing');
+        console.log("this.$el.find('.disc-container')", this.$el.find('.disc-container'));
+        console.log("document.getElementsByClassName('disc-container')[0]", document.getElementsByClassName('disc-container')[0]);
       }
       this.$el.find('.song-description > h1').text(song.name)
     },
