@@ -21,34 +21,35 @@
         audio.ontimeupdate = ()=>{
           this.showLyric(audio.currentTime)
         }
+        let {lyrics} = song
+        lyrics.split('\n').map((string)=>{
+          let p = document.createElement('p')
+          //正则
+          let regex = /\[([\d:.]+)\](.+)/
+          let matches = string.match(regex)
+          if (matches) {
+            let time = matches[1]
+            let parts = time.split(':')
+            let minutes = parts[0]
+            let seconds = parts[1]
+            let newTime = parseInt(minutes,10)*60 + parseFloat(seconds)
+
+            p.textContent = matches[2]
+            p.setAttribute('data-time', newTime)
+          } else {
+            p.textContent = string
+          }
+          this.$el.find('.lyric > .lines').append(p)
+        })
       }
       this.$el.find('img.cover').attr('src', song.cover)
       if (status === 'playing') {
         this.$el.find('.disc-container').addClass('playing')
       } else {
         this.$el.find('.disc-container').removeClass('playing')
+        // document.getElementsByClassName('disc-container')[0].classList.remove('playing');
       }
       this.$el.find('.song-description > h1').text(song.name)
-      let {lyrics} = song
-      lyrics.split('\n').map((string)=>{
-        let p = document.createElement('p')
-        //正则
-        let regex = /\[([\d:.]+)\](.+)/
-        let matches = string.match(regex)
-        if (matches) {
-          let time = matches[1]
-          let parts = time.split(':')
-          let minutes = parts[0]
-          let seconds = parts[1]
-          let newTime = parseInt(minutes,10)*60 + parseFloat(seconds)
-
-          p.textContent = matches[2]
-          p.setAttribute('data-time', newTime)
-        } else {
-          p.textContent = string
-        }
-        this.$el.find('.lyric > .lines').append(p)
-      })
     },
     play(){
       this.$el.find('audio')[0].play()
@@ -77,7 +78,7 @@
       let pHeight = p.getBoundingClientRect().top
       let linesHeight = this.$el.find('.lyric > .lines')[0].getBoundingClientRect().top
       let height = pHeight - linesHeight
-      console.log(height);
+      // console.log(height);
       this.$el.find('.lyric > .lines').css({
         transform: `translateY(${-height + 24}px)`
       })
