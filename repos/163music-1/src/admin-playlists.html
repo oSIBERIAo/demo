@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-Hans" dir="ltr">
+  <head>
+    <!-- <meta http-equiv="refresh" content="1"> -->
+    <meta charset="utf-8">
+    <title>歌单管理页面</title>
+    <link rel="stylesheet" href="./css/default.css">
+  </head>
+
+  <body>
+  <div class="playlistForm-wrapper">
+    <h1>创建歌单</h1>
+    <form class="playlistForm">
+      <div class="row">
+        <label>歌单名<input type="text" name="name"></label>
+      </div>
+      <div class="row">
+        <label>简介<textarea name="summary"></textarea><label>
+      </div>
+      <div class="row">
+        <button type="submit">创建</button>
+      </div>
+    </form>
+  </div>
+
+   <!-- <script src="./js/initializers/av-min.js"></script> -->
+   <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
+   <script src="./js/initializers/av.js"></script>
+   <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+   <script src="./js/admin/event-hub.js"></script>
+   <script>
+     {
+       let view = {
+         el: '.playlistForm-wrapper',
+         init(){
+           this.$el = $(this.el)
+           this.$form = this.$el.find('form')
+         }
+       }
+       let model = {
+         create(data){
+           // var Song = AV.Object.extend('Song');
+           // var song = new Song()
+           // song.set('name', '222');
+           //
+           var Playlist = AV.Object.extend('Playlist');
+           var playlist = new Playlist()
+           for (var key in data) {
+             playlist.set(key, data[key]);
+           }
+
+           playlist.save().then( (playlist)=>{
+             let {id, attributes} = playlist
+             // console.log('newSong', newSong);
+             // console.log('this.data!!!', this.data);
+             // this.data = {id, ...attributes}
+             Object.assign(this.data, {id, ...attributes})
+           }, function (error) {
+             console.error(error);
+           });
+         }
+       }
+       let controller = {
+         init(view, model){
+           this.view = view
+           this.view.init()
+           this.model = model
+           this.bindEvents()
+         },
+         bindEvents(){
+           this.view.$el.on('submit', (e)=>{
+             e.preventDefault()
+             console.log(this.view.$form);
+             let form = this.view.$form.get(0)
+             let keys = ['name', 'summary']
+             let data = {}
+             keys.reduce((prev, item) => {
+               prev[item] = form[item].value
+               return prev
+             }, data)
+             // let data = {
+             //   name: form.name.value.trim(),
+             //   summary: form.summary.value.trim(),
+             // }
+             this.model.create(data)
+             console.log(form);
+             console.log(data);
+           })
+         }
+        }
+
+       controller.init(view, model)
+     }
+
+
+
+
+
+     // var Song = AV.Object.extend('Song');
+     // var song = new Song()
+     // song.set('name', '222');
+     //
+     // var Playlist = AV.Object.extend('Playlist');
+     // var playlist = new Playlist()
+     // playlist.set('name', '测试标题222');
+     // playlist.set('summary', '测试简介222');
+     //
+     // song.set('dependent', playlist);
+     //
+     // song.save().then( (newSong)=>{
+     //   let {id, attributes} = newSong
+     //   // console.log('newSong', newSong);
+     //   // console.log('this.data!!!', this.data);
+     //   // this.data = {id, ...attributes}
+     //   Object.assign(this.data, {id, ...attributes})
+     // }, function (error) {
+     //   console.error(error);
+     // });
+
+
+   </script>
+  </body>
+</html>
