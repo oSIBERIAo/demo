@@ -1,0 +1,49 @@
+.resume{
+  max-width: 800px;
+  margin: 0 auto;
+}
+.resume > section{
+  margin: 30px 0;
+}
+.resume > section > h1{
+  text-align: center;
+  margin: 20px 0;
+}
+.resume > section > h2{
+  text-align: center;
+  margin: 20px 0;
+}
+.resume > section > .profile{
+  text-align: center;
+}
+.resume > .skills > ul{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.resume > .skills > ul > li{
+  width: 48%;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-top: 10px;
+}
+.resume > .profiles > ol {
+
+}
+.resume > .profiles > ol > li{
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-top: 30px;
+}
+.resume > .profiles header {
+  display: flex;
+  justify-content: space-between;
+}
+.resume > .profiles header .name{
+  margin-right: 1em;
+}
+.resume > .profiles header .start{
+  display: flex;
+  margin-bottom: 10px;
+}
