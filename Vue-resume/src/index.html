@@ -31,13 +31,18 @@
       </aside>
       <main>
         <div class="resume">
-          <section>
-            <h1 contenteditable="true">
-              <input type="text" v-model="resume.name"></h1>
-            <h2>{{ resume.name }}</h2>
-            <p class="profile">应聘职位 : {{ resume.job_titile }}</p>
+          <section class="profile">
+            <h1>
+              <editable-span v-bind:value="resume.name" v-on:edit="onEdit('name', $event)"></editable-span>
+            </h1>
+            <p class="profile">应聘职位 :
+              <editable-span v-bind:value="resume.jobTitile" v-on:edit="onEdit('jobTitile', $event)"></editable-span>
+            </p>
             <p class="profile">
-            {{ resume.birthday }} | {{ resume.gender }} | {{ resume.email }} | {{ resume.phone }}
+              <editable-span :value="resume.birthday" @edit="onEdit('birthday', $event)"></editable-span> |
+              <editable-span :value="resume.gender" @edit="onEdit('gender', $event)"></editable-span> |
+              <editable-span :value="resume.email" @edit="onEdit('email', $event)"></editable-span> |
+              <editable-span :value="resume.phone" @edit="onEdit('phone', $event)"></editable-span>
             </p>
           </section>
           <section class="skills">
@@ -143,10 +148,39 @@
   //   alert('LeanCloud Rocks!');
   // })
   </script>
+  <style media="screen">
+    .editableSpan{position: relative;}
+    .editableSpan button{position: absolute; display: none; left: 100%; top: auto; padding: 0;}
+    .editableSpan:hover button{display: inline-block; z-index: 1}
+  </style>
   <script>
+  // 定义一个名为 button-counter 的新组件
+  Vue.component('editable-span', {
+    props: ['value'],
+    data: function () {
+      return {
+        editing: false
+      }
+    },
+    template: `
+    <span class="editableSpan">
+      <span v-show="!editing">{{value}}</span>
+      <input v-show="editing" type="text" v-bind:value="value" @input="triggerEdit"/>
+      <button @click="editing = !editing">edit</button>
+    </span>
+    `,
+    methods:{
+      triggerEdit(e){
+        console.log(e.target.value);
+        this.$emit('edit', e.target.value)
+      }
+    },
+  })
+
   var app = new Vue({
     el: '#app',
     data: {
+      editingName: false,
       resume: {
         message: 'Hello Vue!',
         name: '姓名',
@@ -154,14 +188,14 @@
         gender: '男',
         email: 'example@gmail.com',
         phone: '18888888888',
-        job_titile: '前端工程师'
+        jobTitile: '前端工程师'
       }
     },
     methods: {
-      x(e){
-        console.log(e);
-        console.log(e.target.innertText);
-        this.resume.name = (e.target.innerText)
+      onEdit(key, value){
+        console.log('key',key);
+        console.log('value',value);
+        this.resume[key] = value
       }
     },
   })
