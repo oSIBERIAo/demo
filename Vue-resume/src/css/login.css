@@ -1,0 +1,17 @@
+.login{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 400px;
+  transform: translate(-50%, -50%);
+  background: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login > .form {
+  background: #ddd;
+  min-width: 100%;
+  min-height: 100%;
+}
