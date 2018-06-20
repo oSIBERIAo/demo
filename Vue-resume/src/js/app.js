@@ -1,9 +1,14 @@
+
 let app = new Vue({
   el: '#app',
   data: {
     editingName: false,
     loginVisible: false,
     signUpVisible: false,
+    currentUser: {
+      objectId: undefined,
+      email: '',
+    },
     resume: {
       name: '姓名',
       birthday: '1994',
@@ -29,10 +34,17 @@ let app = new Vue({
     },
     onLogin(e){
       console.log(this.login);
-      AV.User.logIn(this.login.email, this.login.password).then(function (loggedInUser) {
-        console.log(loggedInUser);
+      AV.User.logIn(this.login.email, this.login.password).then( (user) => {
+        console.log('user', user);
         console.log('登陆成功');
-      }, function (error) {
+        this.currentUser = {
+          id: user.id,
+          email: user.attributes.email
+        }
+        // this.currentUser.id = user.id
+        // this.currentUser.attributes.email = user.attributes.email
+        console.log('currentUser', this.currentUser);
+      }, (error) => {
         console.log(error);
         if (error.code === 211) {
           alert('用户不存在')
@@ -51,9 +63,9 @@ let app = new Vue({
       user.setPassword(this.signUp.password);
       // 设置邮箱
       user.setEmail(this.signUp.email);
-      user.signUp().then(function (user) {
+      user.signUp().then((user) => {
           console.log(user);
-      }, function (error) {
+      },  (error) => {
       });
     },
     onLogOut(e){
@@ -90,3 +102,16 @@ let app = new Vue({
     },
   },
 })
+
+
+let currentUser = AV.User.current()
+if (currentUser) {
+  console.log('currentUser', JSON.stringify(currentUser));
+  console.log('currentUser', currentUser);
+  app.currentUser = currentUser.toJSON()
+  console.log('app.currentUser', app.currentUser);
+}
+
+
+
+//
