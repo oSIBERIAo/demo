@@ -32,15 +32,20 @@ let app = new Vue({
       console.log('value',value);
       this.resume[key] = value
     },
+    hasLogin(){
+      return !!this.currentUser.objectId
+    },
     onLogin(e){
       console.log(this.login);
       AV.User.logIn(this.login.email, this.login.password).then( (user) => {
+        user = user.toJSON()
         console.log('user', user);
         console.log('登陆成功');
         this.currentUser = {
-          id: user.id,
-          email: user.attributes.email
+          objectId: user.objectId,
+          email: user.email
         }
+        this.loginVisible = false
         // this.currentUser.id = user.id
         // this.currentUser.attributes.email = user.attributes.email
         console.log('currentUser', this.currentUser);
@@ -64,8 +69,15 @@ let app = new Vue({
       // 设置邮箱
       user.setEmail(this.signUp.email);
       user.signUp().then((user) => {
-          console.log(user);
+        user = user.toJSON()
+          console.log(user)
+          this.currentUser = {
+            objectId: user.objectId,
+            email: user.email
+          }
+          this.loginVisible = false
       },  (error) => {
+        alert(error.rawMessage)
       });
     },
     onLogOut(e){
@@ -94,11 +106,27 @@ let app = new Vue({
       // })
     },
     saveResume(){
-      let {id} = AV.User.current()
-      console.log(id)
-      var user = AV.Object.createWithoutData('User', id);
+      let {objectId} = AV.User.current().toJSON()
+      // console.log(id)
+      var user = AV.Object.createWithoutData('User', objectId);
       user.set('resume', this.resume)
-      user.save()
+      user.save().then(()=>{
+        alert('保存成功')
+      },()=>{
+        alert('保存失败')
+      })
+    },
+    getResume(){
+      var query = new AV.Query('User');
+      query.get(this.currentUser.objectId ).then((user)=>{
+        console.log('getResume', user);
+        let resume = user.toJSON().resume
+        this.resume = resume
+        // 成功获得实例
+        // todo 就是 id 为 57328ca079bc44005c2472d0 的 Todo 对象实例
+      }, function (error) {
+        // 异常处理
+      });
     },
   },
 })
@@ -106,10 +134,13 @@ let app = new Vue({
 
 let currentUser = AV.User.current()
 if (currentUser) {
-  console.log('currentUser', JSON.stringify(currentUser));
+  console.log('currentUser', currentUser.toJSON());
   console.log('currentUser', currentUser);
   app.currentUser = currentUser.toJSON()
+  // app.currentUser.objectId = currentUser.toJSON().objectId
+  // app.currentUser.email = currentUser.toJSON().email
   console.log('app.currentUser', app.currentUser);
+  app.getResume()
 }
 
 
