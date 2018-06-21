@@ -34,8 +34,8 @@
       </aside>
       <main>
         <div class="resume">
-          <!-- <p>{{currentUser}}</p>
-          <p>{{resume}}</p> -->
+          <!-- <p>{{currentUser}}</p> -->
+          <p>{{resume}}</p>
           <section class="profile">
             <h1>
               <editable-span v-bind:value="resume.name" v-on:edit="onEdit('name', $event)"></editable-span>
@@ -52,36 +52,46 @@
           </section>
           <section class="skills">
             <ul>
-              <li>
-                <span class="name">静态页面制作</span>
-                <div class="description">
-                  完美完成设计稿
-                </div>
+              <li v-for="skill,index in resume.skills">
+                  <editable-span :value="skill.name" @edit="onEdit(`skills[${index}].name`, $event)" class="name">{{skill.name}}</editable-span>
+                  <div class="description">
+                    <editable-span :value="skill.description" @edit="onEdit(`skills[${index}].description`, $event)">{{skill.description}}</editable-span>
+                  </div>
+                  <span class="remove" v-if="index>=4" @click="removeSkill">X</span>
               </li>
               <li>
-                <span class="name">静态页面制作</span>
-                <div class="description">
-                  完美完成设计稿
-                </div>
-              </li>
-              <li>
-                <span class="name">静态页面制作</span>
-                <div class="description">
-                  完美完成设计稿
-                </div>
-              </li>
-              <li>
-                <span class="name">静态页面制作</span>
-                <div class="description">
-                  完美完成设计稿
-                </div>
+                <span @click="addSkill">添加</span>
               </li>
             </ul>
           </section>
           <section class="profiles">
             <h2>项目经历</h2>
             <ol>
+              <li v-for="project,index in resume.projects">
+                <header>
+                  <div class="start">
+                    <h3 class="name">
+                      <editable-span :value="project.name" @edit="onEdit(`projects[${index}].name`, $event)"></editable-span>
+                    </h3>
+                    <span class="link">
+                      <editable-span :value="project.link" @edit="onEdit(`projects[${index}].link`, $event)"></editable-span>
+                    </span>
+                  </div>
+                  <div class="end">
+                    <span class="keywords">
+                      <editable-span :value="project.keywords" @edit="onEdit(`projects[${index}].keywords`, $event)"></editable-span>
+                    </span>
+                  </div>
+                </header>
+                <p class="description">
+                  <editable-span :value="project.description" @edit="onEdit(`projects[${index}].description`, $event)"></editable-span>
+                </p>
+                <span class="remove" v-if="index>=1" @click="removeProjects">X</span>
+              </li>
               <li>
+                <span @click="addProjects">添加</span>
+              </li>
+              <!-- <li>
                 <header>
                   <div class="start">
                     <h3 class="name">我的简历</h3>
@@ -128,8 +138,7 @@
                   </div>
                 </header>
                 <p class="description">我是怎么做这个项目的</p>
-              </li>
-
+              </li> -->
             </ol>
           </section>
         </div>

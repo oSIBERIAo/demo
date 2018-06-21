@@ -39,4 +39,8 @@ div[v-cloak]{display: none;}
   button {
     padding: 5px 10px;
   }
+  .skills >  ul > li {position: relative;}
+  .skills >  ul > li .remove{position: absolute; top: 2px; right: 5px;}
+  .profiles >  ol > li {position: relative;}
+  .profiles >  ol > li .remove{position: absolute; top: 2px; right: 5px;}
 }

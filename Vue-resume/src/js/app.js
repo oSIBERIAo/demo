@@ -15,7 +15,17 @@ let app = new Vue({
       gender: '男',
       email: 'example@gmail.com',
       phone: '18888888888',
-      jobTitile: '前端工程师'
+      jobTitile: '前端工程师',
+      skills: [
+        {name: '请填写技能名称', description: '请填写技能描述'},
+        {name: '请填写技能名称', description: '请填写技能描述'},
+        {name: '请填写技能名称', description: '请填写技能描述'},
+        {name: '请填写技能名称', description: '请填写技能描述'},
+      ],
+      projects:[
+        {name: '请填写技能名称', link: 'http://', keywords: '请填写关键字', description: '请详细描述'},
+        {name: '请填写技能名称', link: 'http://', keywords: '请填写关键字', description: '请详细描述'},
+      ],
     },
     login: {
       email: '',
@@ -30,7 +40,19 @@ let app = new Vue({
     onEdit(key, value){
       console.log('key',key);
       console.log('value',value);
-      this.resume[key] = value
+      //解析key
+      let regex = /\[(\d+)\]/g
+      key = key.replace(regex, (match,number)=> `.${number}`)
+      keys = key.split('.')
+      console.log('ksys', keys);
+      let result = this.resume
+      for (let i = 0; i < keys.length; i++) {
+        if (i === keys.length - 1) {
+          result[keys[i]] = value
+        } else {
+          result = result[keys[i]]
+        }
+      }
     },
     hasLogin(){
       return !!this.currentUser.objectId
@@ -121,12 +143,28 @@ let app = new Vue({
       query.get(this.currentUser.objectId ).then((user)=>{
         console.log('getResume', user);
         let resume = user.toJSON().resume
-        this.resume = resume
+        // this.resume = resume
+        Object.assign(this.resume, resume)
         // 成功获得实例
         // todo 就是 id 为 57328ca079bc44005c2472d0 的 Todo 对象实例
       }, function (error) {
         // 异常处理
       });
+    },
+    addSkill(){
+      this.resume.skills.push({name: '请填写技能名称', description: '请填写技能描述'})
+    },
+    removeSkill(index){
+      console.log('index!!!', index);
+      this.resume.skills.splice(index, 1)
+    },
+    addProjects(index){
+      console.log('index!!!', index);
+      this.resume.projects.push(  {name: '请填写技能名称', link: 'http://', keywords: '请填写关键字', description: '请详细描述'})
+    },
+    removeProjects(index){
+      console.log('index!!!', index);
+      this.resume.projects.splice(index, 1)
     },
   },
 })
