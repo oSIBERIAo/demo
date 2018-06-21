@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/editable-span.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/signUp.css">
+    <link rel="stylesheet" href="css/share.css">
   </head>
   <body>
     <div class="page" id='app'>
@@ -18,7 +19,7 @@
               <button class="button" @click="onClickSave">保存</button>
             </li>
             <li>
-              <button class="button">分享</button>
+              <button class="button" @click="shareVisible = true">分享</button>
             </li>
             <li>
               <button class="button">打印</button>
@@ -57,7 +58,7 @@
                   <div class="description">
                     <editable-span :value="skill.description" @edit="onEdit(`skills[${index}].description`, $event)">{{skill.description}}</editable-span>
                   </div>
-                  <span class="remove" v-if="index>=4" @click="removeSkill">X</span>
+                  <span class="remove" v-if="index>=4" @click="removeSkill(index)">X</span>
               </li>
               <li>
                 <span @click="addSkill">添加</span>
@@ -86,59 +87,11 @@
                 <p class="description">
                   <editable-span :value="project.description" @edit="onEdit(`projects[${index}].description`, $event)"></editable-span>
                 </p>
-                <span class="remove" v-if="index>=1" @click="removeProjects">X</span>
+                <span class="remove" v-if="index>=1" @click="removeProjects(index)">X</span>
               </li>
               <li>
                 <span @click="addProjects">添加</span>
               </li>
-              <!-- <li>
-                <header>
-                  <div class="start">
-                    <h3 class="name">我的简历</h3>
-                    <span class="link">http://xxxx/xxx</span>
-                  </div>
-                  <div class="end">
-                    <span class="keywords">CSS jQuery 响应式</span>
-                  </div>
-                </header>
-                <p class="description">我是怎么做这个项目的</p>
-              </li>
-              <li>
-                <header>
-                  <div class="start">
-                    <h3 class="name">我的简历</h3>
-                    <span class="link">http://xxxx/xxx</span>
-                  </div>
-                  <div class="end">
-                    <span class="keywords">CSS jQuery 响应式</span>
-                  </div>
-                </header>
-                <p class="description">我是怎么做这个项目的</p>
-              </li>
-              <li>
-                <header>
-                  <div class="start">
-                    <h3 class="name">我的简历</h3>
-                    <span class="link">http://xxxx/xxx</span>
-                  </div>
-                  <div class="end">
-                    <span class="keywords">CSS jQuery 响应式</span>
-                  </div>
-                </header>
-                <p class="description">我是怎么做这个项目的</p>
-              </li>
-              <li>
-                <header>
-                  <div class="start">
-                    <h3 class="name">我的简历</h3>
-                    <span class="link">http://xxxx/xxx</span>
-                  </div>
-                  <div class="end">
-                    <span class="keywords">CSS jQuery 响应式</span>
-                  </div>
-                </header>
-                <p class="description">我是怎么做这个项目的</p>
-              </li> -->
             </ol>
           </section>
         </div>
@@ -178,6 +131,14 @@
             <a href="#" @click="signUpVisible = false; loginVisible = true">登陆</a>
           </div>
         </form>
+      </div>
+      <div v-show="shareVisible" class="share" v-cloak>
+        <h2>
+          分享简历链接
+        </h2>
+        <div>
+          <textarea readonly type="text" :value="shareLink"></textarea>
+        </div>
       </div>
     </div>
 

@@ -5,6 +5,7 @@ let app = new Vue({
     editingName: false,
     loginVisible: false,
     signUpVisible: false,
+    shareVisible: false,
     currentUser: {
       objectId: undefined,
       email: '',
@@ -35,6 +36,7 @@ let app = new Vue({
       email: '',
       password: '',
     },
+    shareLink: '',
   },
   methods: {
     onEdit(key, value){
@@ -155,15 +157,12 @@ let app = new Vue({
       this.resume.skills.push({name: '请填写技能名称', description: '请填写技能描述'})
     },
     removeSkill(index){
-      console.log('index!!!', index);
       this.resume.skills.splice(index, 1)
     },
     addProjects(index){
-      console.log('index!!!', index);
       this.resume.projects.push(  {name: '请填写技能名称', link: 'http://', keywords: '请填写关键字', description: '请详细描述'})
     },
     removeProjects(index){
-      console.log('index!!!', index);
       this.resume.projects.splice(index, 1)
     },
   },
@@ -177,7 +176,7 @@ if (currentUser) {
   app.currentUser = currentUser.toJSON()
   // app.currentUser.objectId = currentUser.toJSON().objectId
   // app.currentUser.email = currentUser.toJSON().email
-  console.log('app.currentUser', app.currentUser);
+  app.shareLink = location.origin + location.pathname + '?user_id=' + app.currentUser.objectId
   app.getResume()
 }
 
