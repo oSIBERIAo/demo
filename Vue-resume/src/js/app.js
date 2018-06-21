@@ -6,6 +6,27 @@ let app = new Vue({
     loginVisible: false,
     signUpVisible: false,
     shareVisible: false,
+    previewUser: {
+      objectId: undefined,
+    },
+    previewResume: {
+      name: '姓名',
+      birthday: '1994',
+      gender: '男',
+      email: 'example@gmail.com',
+      phone: '18888888888',
+      jobTitile: '前端工程师',
+      skills: [
+        {name: '请填写技能名称', description: '请填写技能描述'},
+        {name: '请填写技能名称', description: '请填写技能描述'},
+        {name: '请填写技能名称', description: '请填写技能描述'},
+        {name: '请填写技能名称', description: '请填写技能描述'},
+      ],
+      projects:[
+        {name: '请填写技能名称', link: 'http://', keywords: '请填写关键字', description: '请详细描述'},
+        {name: '请填写技能名称', link: 'http://', keywords: '请填写关键字', description: '请详细描述'},
+      ],
+    },
     currentUser: {
       objectId: undefined,
       email: '',
@@ -37,6 +58,20 @@ let app = new Vue({
       password: '',
     },
     shareLink: '',
+    mode: 'edit' // 'preview'
+  },
+  computed: {
+    displayResume(){
+      return this.mode === 'preview' ? this.previewResume : this.resume
+    }
+  },
+  watch: {
+    'currentUser.objectId': function(newValue, oldValue){
+      // console.log('newValue', newValue);
+      if (newValue) {
+        this.getResume(this.currentUser)
+      }
+    }
   },
   methods: {
     onEdit(key, value){
@@ -140,15 +175,12 @@ let app = new Vue({
         alert('保存失败')
       })
     },
-    getResume(){
+    getResume(user){
       var query = new AV.Query('User');
-      query.get(this.currentUser.objectId ).then((user)=>{
-        console.log('getResume', user);
+      return query.get(user.objectId ).then((user)=>{
+        // console.log('getResume', user);
         let resume = user.toJSON().resume
-        // this.resume = resume
-        Object.assign(this.resume, resume)
-        // 成功获得实例
-        // todo 就是 id 为 57328ca079bc44005c2472d0 的 Todo 对象实例
+        return resume
       }, function (error) {
         // 异常处理
       });
@@ -168,7 +200,7 @@ let app = new Vue({
   },
 })
 
-
+//获取当前用户的 id
 let currentUser = AV.User.current()
 if (currentUser) {
   console.log('currentUser', currentUser.toJSON());
@@ -177,8 +209,28 @@ if (currentUser) {
   // app.currentUser.objectId = currentUser.toJSON().objectId
   // app.currentUser.email = currentUser.toJSON().email
   app.shareLink = location.origin + location.pathname + '?user_id=' + app.currentUser.objectId
-  app.getResume()
+  app.getResume(app.currentUser).then(resume => {
+    console.log('currentId', app.currentUser.objectId);
+    Object.assign(app.resume, resume)
+    // app.resume = resume
+  })
 }
+
+//获取预览用户的 id
+let search = location.search
+let regex = /user_id=([^&]+)/
+let matches = search.match(regex)
+let userId
+if (matches) {
+  userId = matches[1]
+  app.mode = 'preview'
+  app.getResume({objectId: userId}).then(resume => {
+    console.log('previewId', userId);
+    Object.assign(app.previewResume, resume)
+  })
+}
+
+
 
 
 

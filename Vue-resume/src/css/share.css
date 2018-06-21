@@ -3,7 +3,7 @@
   top: 50%;
   left: 50%;
   width: 400px;
-  height: 150px;
+  height: 180px;
   padding: 10px;
   transform: translate(-50%, -50%);
   background: #ddd;
@@ -12,6 +12,7 @@
 }
 .share textarea{
   margin-top: 10px;
+  margin-bottom: 10px;
   width: 90%;
   height: 6em;
   resize: none;

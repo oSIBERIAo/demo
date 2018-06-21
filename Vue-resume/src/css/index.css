@@ -43,4 +43,10 @@ div[v-cloak]{display: none;}
   .skills >  ul > li .remove{position: absolute; top: 2px; right: 5px;}
   .profiles >  ol > li {position: relative;}
   .profiles >  ol > li .remove{position: absolute; top: 2px; right: 5px;}
+
+  .exitPreview{
+    position: fixed;
+    right: 20px;
+    top: 20px;
+  }
 }
