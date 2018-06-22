@@ -1,77 +1,56 @@
-.resume{
+body.dark{
+  background: black;
+  color: white;
+}
+body.dark .resume{
   max-width: 800px;
   margin: 0 auto;
 }
-.resume > section{
+body.dark .resume > section{
   margin: 30px 0;
 }
-.resume > section > h1{
+body.dark .resume > section > h1{
   text-align: center;
   margin: 20px 0;
 }
-.resume > section > h2{
+body.dark .resume > section > h2{
   text-align: center;
   margin: 20px 0;
 }
-.resume > section > .profile{
+body.dark .resume > section > .profile{
   text-align: center;
 }
-.resume > .profile{
+body.dark .resume > .profile{
   text-align: center;
 }
-.resume > .skills > ul{
+body.dark .resume > .skills > ul{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.resume > .skills > ul > li{
+body.dark .resume > .skills > ul > li{
   width: 48%;
   border: 1px solid #ddd;
   padding: 10px;
   margin-top: 10px;
 }
-.resume > .profiles > ol {
+body.dark .resume > .profiles > ol {
 
 }
-.resume > .profiles > ol > li{
+body.dark .resume > .profiles > ol > li{
   width: 100%;
   border: 1px solid #ddd;
   padding: 20px;
   margin-top: 30px;
 }
-.resume > .profiles header {
+body.dark .resume > .profiles header {
   display: flex;
   justify-content: space-between;
 }
-.resume > .profiles header .name{
+body.dark .resume > .profiles header .name{
   margin-right: 1em;
 }
-.resume > .profiles header .start{
+body.dark .resume > .profiles header .start{
   display: flex;
   margin-bottom: 10px;
 }
-
-
-
-
-
-/* dark */
-
-main.dark {
-  background: black;
-  color: white;
-}
-
-main.dark .resume{
-
-}
-
-
-
-
-
-
-
-
-
-/*  */

@@ -32,7 +32,7 @@ div[v-cloak]{display: none;}
     padding: 10px;
   }
   .page > main{
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     flex-grow: 1;
     overflow: auto;
   }
