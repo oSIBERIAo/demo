@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>路由</title>
+  </head>
+  <body>
+    <style media="screen">
+      x-tab{
+        display: block;
+      }
+      x-tab > .content > li{
+        display: none;
+      }
+      x-tab > .nav > li.active{
+        background: red;
+      }
+      x-tab > .content > li.active{
+        display: block;
+      }
+    </style>
+    <x-tab>
+      <ol class="nav">
+        <li class="active"><a href="#0">tab 1</a></li>
+        <li><a href="#1">tab 2</a></li>
+      </ol>
+      <ol class="content">
+        <li class="active">content 1</li>
+        <li>content 2</li>
+      </ol>
+    </x-tab>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    selctTab()
+    window.onhashchange = (e)=> {
+      selctTab()
+    }
+
+    function selctTab() {
+      let index = location.hash || '#0'
+      index = index.substring(1)
+      $('x-tab > .nav > li').eq(index).addClass('active')
+        .siblings().removeClass('active')
+      $('x-tab > .content > li').eq(index).addClass('active')
+        .siblings().removeClass('active')
+    }
+
+
+
+    
+    // $('x-tab').on('click', '.nav > li', (e)=>{
+    //   let $li = $(e.currentTarget)
+    //   $li.addClass('active')
+    //     .siblings().removeClass('active')
+    //   let index = $li.index()
+    //   location.hash = index
+    //   $li.closest('x-tab').find('.content > li').eq(index)
+    //     .addClass('active')
+    //     .siblings().removeClass('active')
+    // })
+  </script>
+  </body>
+</html>
