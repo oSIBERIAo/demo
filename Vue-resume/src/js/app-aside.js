@@ -42,6 +42,7 @@ Vue.component('app-aside', {
           </li>
           <li>
             <button class="button" @click="$emit('changeTheme')">换肤</button>
+            <router-link to="/skinPicker">换肤</router-link>
           </li>
         </ul>
       </div>

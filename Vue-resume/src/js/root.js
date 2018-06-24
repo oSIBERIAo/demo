@@ -8,6 +8,7 @@ const routes = [
   { path: '/', component: window.App },
   { path: '/login', component: window.Login },
   { path: '/signUp', component: window.SignUp },
+  { path: '/skinPicker', component: window.SkinPicker },
 ]
 
 // 3. 创建 router 实例，然后传 `routes` 配置
@@ -23,6 +24,7 @@ const root = new Vue({
   router,
   data(){
     return {
+      skinPickerVisible: false,
       currentUser: {},
     }
   }
