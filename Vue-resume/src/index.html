@@ -15,40 +15,30 @@
     <link rel="stylesheet" href="css/print.css" media="print">
   </head>
   <body class="default">
-    <div class="page" id='app'>
-      <app-aside></app-aside>
+    <div class="page" id='root'>
+      <router-view></router-view>
+      <!-- <app-aside v-show="mode === 'edit'" @save="onClickSave"></app-aside>
       <main>
         <resume :mode="mode" :display-resume="displayResume" ></resume>
-      </main>
-      <login v-show="loginVisible" @close="loginVisible = false" @login="onLogin" @goto-signup="gotoSignupLogin"></login>
-      <share v-bind:share-link="shareLink" v-show="shareVisible" @close-share="shareVisible = false"></share>
-      <sign-up v-show="signUpVisible" @close="signUpVisible = false" @signup="onSignUp" @goto-login="gotoSignupLogin"></sign-up>
-      <button class="exitPreview" @click="mode = 'edit'" v-if="mode === 'preview'">退出预览</button>
-      <skin-picker v-show="skinPickerVisible" @close-skinpicker="skinPickerVisible = false"></skin-picker>
+      </main> -->
+
+      <!-- <login v-show="loginVisible" @close="loginVisible = false" @login="onLogin" @goto-signup="gotoSignupLogin"></login> -->
+      <!-- <share v-bind:share-link="shareLink" v-show="shareVisible" @close-share="shareVisible = false"></share> -->
+      <!-- <sign-up v-show="signUpVisible" @close="signUpVisible = false" @signup="onSignUp" @goto-login="gotoSignupLogin"></sign-up> -->
+
+      <!-- <button class="exitPreview" @click="mode = 'edit'" v-if="mode === 'preview'">退出预览</button> -->
+      <!-- <skin-picker v-show="skinPickerVisible" @close-skinpicker="skinPickerVisible = false"></skin-picker> -->
     </div>
 
-
-
-
   <script src="../vendors/vue.js" charset="utf-8"></script>
+  <script src="../vendors/vue-router.min.js" charset="utf-8"></script>
   <script src="../vendors/av-min.js" charset="utf-8"></script>
   <script src="js/av.js"></script>
-  <script>
+  <!-- <script>
   console.log(window.Vue);
   console.log(window.AV);
-  // var TestObject = AV.Object.extend('TestObject');
-  // var testObject = new TestObject();
-  // testObject.save({
-  //   words: 'Hello World!'
-  // }).then(function(object) {
-  //   alert('LeanCloud Rocks!');
-  // })
-  </script>
-  <style media="screen">
-
-  </style>
+  </script> -->
   <script src="./js/editable-span.js" charset="utf-8"></script>
-
 
   <script src="js/login.js" charset="utf-8"></script>
   <script src="js/share.js" charset="utf-8"></script>
@@ -58,5 +48,7 @@
   <script src="js/app-aside.js" charset="utf-8"></script>
 
   <script src="./js/app.js" charset="utf-8"></script>
+  <script src="./js/root.js" charset="utf-8"></script>
+  <!-- <script src="./js/router.js" charset="utf-8"></script> -->
   </body>
 </html>

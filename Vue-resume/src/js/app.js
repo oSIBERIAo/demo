@@ -1,66 +1,75 @@
-
-let app = new Vue({
-  el: '#app',
-  data: {
-    editingName: false,
-    loginVisible: false,
-    signUpVisible: false,
-    shareVisible: false,
-    skinPickerVisible: false,
-    shareLink: '',
-    previewUser: {
-      objectId: undefined,
-    },
-    previewResume: {
-      name: '姓名',
-      birthday: '1994',
-      gender: '男',
-      email: 'example@gmail.com',
-      phone: '18888888888',
-      jobTitile: '前端工程师',
-      skills: [
-        {name: '请填写技能名称', description: '请填写技能描述'},
-        {name: '请填写技能名称', description: '请填写技能描述'},
-        {name: '请填写技能名称', description: '请填写技能描述'},
-        {name: '请填写技能名称', description: '请填写技能描述'},
-      ],
-      projects:[
-        {name: '请填写技能名称', link: 'http://', keywords: '请填写关键字', description: '请详细描述'},
-        {name: '请填写技能名称', link: 'http://', keywords: '请填写关键字', description: '请详细描述'},
-      ],
-    },
-    currentUser: {
-      objectId: undefined,
-      email: '',
-    },
-    resume: {
-      name: '姓名',
-      birthday: '1994',
-      gender: '男',
-      email: 'example@gmail.com',
-      phone: '18888888888',
-      jobTitile: '前端工程师',
-      skills: [
-        {name: '请填写技能名称', description: '请填写技能描述'},
-        {name: '请填写技能名称', description: '请填写技能描述'},
-        {name: '请填写技能名称', description: '请填写技能描述'},
-        {name: '请填写技能名称', description: '请填写技能描述'},
-      ],
-      projects:[
-        {name: '请填写技能名称', link: 'http://', keywords: '请填写关键字', description: '请详细描述'},
-        {name: '请填写技能名称', link: 'http://', keywords: '请填写关键字', description: '请详细描述'},
-      ],
-    },
-    login: {
-      email: '',
-      password: '',
-    },
-    signUp: {
-      email: '',
-      password: '',
-    },
-    shareLink: '',
-    mode: 'edit', // 'preview'
+window.App = {
+  template:`
+  <div>
+    <app-aside v-show="mode === 'edit'" @save="onClickSave"></app-aside>
+    <main>
+      <resume :mode="mode" :display-resume="displayResume" ></resume>
+    </main>
+    <button class="exitPreview" @click="mode = 'edit'" v-if="mode === 'preview'">退出预览</button>
+  </div>
+  `,
+  data() {
+    return {
+      editingName: false,
+      loginVisible: false,
+      signUpVisible: false,
+      shareVisible: false,
+      skinPickerVisible: false,
+      shareLink: '',
+      previewUser: {
+        objectId: undefined,
+      },
+      previewResume: {
+        name: '姓名',
+        birthday: '1994',
+        gender: '男',
+        email: 'example@gmail.com',
+        phone: '18888888888',
+        jobTitile: '前端工程师',
+        skills: [
+          {name: '请填写技能名称', description: '请填写技能描述'},
+          {name: '请填写技能名称', description: '请填写技能描述'},
+          {name: '请填写技能名称', description: '请填写技能描述'},
+          {name: '请填写技能名称', description: '请填写技能描述'},
+        ],
+        projects:[
+          {name: '请填写技能名称', link: 'http://', keywords: '请填写关键字', description: '请详细描述'},
+          {name: '请填写技能名称', link: 'http://', keywords: '请填写关键字', description: '请详细描述'},
+        ],
+      },
+      currentUser: {
+        objectId: undefined,
+        email: '',
+      },
+      resume: {
+        name: '姓名',
+        birthday: '1994',
+        gender: '男',
+        email: 'example@gmail.com',
+        phone: '18888888888',
+        jobTitile: '前端工程师',
+        skills: [
+          {name: '请填写技能名称', description: '请填写技能描述'},
+          {name: '请填写技能名称', description: '请填写技能描述'},
+          {name: '请填写技能名称', description: '请填写技能描述'},
+          {name: '请填写技能名称', description: '请填写技能描述'},
+        ],
+        projects:[
+          {name: '请填写技能名称', link: 'http://', keywords: '请填写关键字', description: '请详细描述'},
+          {name: '请填写技能名称', link: 'http://', keywords: '请填写关键字', description: '请详细描述'},
+        ],
+      },
+      login: {
+        email: '',
+        password: '',
+      },
+      signUp: {
+        email: '',
+        password: '',
+      },
+      shareLink: '',
+      mode: 'edit', // 'preview'
+    }
   },
   computed: {
     displayResume(){
@@ -133,7 +142,7 @@ let app = new Vue({
     onClickSave(){
       var currentUser = AV.User.current();
       if (!currentUser) {
-        this.loginVisible = true
+        this.$router.push('/login')
       } else {
         this.saveResume()
         console.log('currentUser', currentUser);
@@ -189,40 +198,5 @@ let app = new Vue({
       document.body.className = name
     },
   },
-})
-
-//获取当前用户的 id
-let currentUser = AV.User.current()
-if (currentUser) {
-  console.log('currentUser', currentUser.toJSON());
-  console.log('currentUser', currentUser);
-  app.currentUser = currentUser.toJSON()
-  // app.currentUser.objectId = currentUser.toJSON().objectId
-  // app.currentUser.email = currentUser.toJSON().email
-  app.shareLink = location.origin + location.pathname + '?user_id=' + app.currentUser.objectId
-  app.getResume(app.currentUser).then(resume => {
-    console.log('currentId', app.currentUser.objectId);
-    Object.assign(app.resume, resume)
-    // app.resume = resume
-  })
 }
-
-//获取预览用户的 id
-let search = location.search
-let regex = /user_id=([^&]+)/
-let matches = search.match(regex)
-let userId
-if (matches) {
-  userId = matches[1]
-  app.mode = 'preview'
-  app.getResume({objectId: userId}).then(resume => {
-    console.log('previewId', userId);
-    Object.assign(app.previewResume, resume)
-  })
-}
-
-
-
-
-
-//
+Vue.component('app', window.App)

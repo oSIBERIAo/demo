@@ -1,5 +1,5 @@
 Vue.component('app-aside', {
-  props: ['mode', 'logoutVisible'],
+  props: ['mode',],
   methods: {
     hasLogin(){
       return !!this.currentUser.objectId
@@ -32,7 +32,7 @@ Vue.component('app-aside', {
       <div class="upper">
         <ul class="actions">
           <li>
-            <button class="button" @click="$emit('onClickSave')">保存</button>
+            <button class="button" @click="$emit('save')">保存</button>
           </li>
           <li>
             <button class="button" @click="$emit('share')">分享</button>
@@ -46,7 +46,7 @@ Vue.component('app-aside', {
         </ul>
       </div>
       <div class="down">
-        <button class="button" @click="$emit('logout')" v-show="logoutVisible">登出</button>
+        <button class="button" @click="$emit('logout')" v-show="">登出</button>
       </div>
     </aside>
   `,
