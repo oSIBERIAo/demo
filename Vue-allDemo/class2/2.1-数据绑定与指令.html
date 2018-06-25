@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="app">
+        {{msg}} <br>
+        {{6+ 6*3}} <br>
+        {{6<3 ? msg : a}} <br>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script type="text/javascript">
+    var app = new Vue({
+      el: "#app",
+      data: {
+        msg: "start learn Vue",
+        a: 123,
+      },
+      created: ()=>{
+        // alert('我是vue实例，创建完成。还未挂载到DOM')
+      },
+      mounted: ()=>{
+        // alert('我是vue实例，创建完成。已经挂载到DOM')
+      },
+    })
+  </script>
+  </body>
+</html>
