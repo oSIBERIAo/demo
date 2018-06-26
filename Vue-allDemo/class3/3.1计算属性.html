@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="demo">
+      {{text}} <br>
+      {{text.split(',').reverse().join(',')}} <br>
+      {{reverseText}}
+
+      <!-- 购物车1价格：
+      {{package1}}
+      购物车2价格：
+      {{package2}} -->
+      购物车价格：
+      {{prices}}
+    </div>
+    <div id="demo3">
+      名字：
+      {{fullName}}
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script type="text/javascript">
+    var app3 = new Vue({
+      el: '#demo3',
+      data: {
+        firstName: 'zhang',
+        lastName: 'san',
+      },
+      computed: {
+        //下面注释全等
+        // fullName: function () {
+        //   return this.firstName + ' ' + this.lastName
+        // },
+        fullName:{
+          get: function () {
+            return this.firstName + ' ' + this.lastName
+          },
+          set: function (newValue) {
+            // Cao,Cao
+            var name = newValue.split(',')
+            this.firstName = name[0]
+            this.lastName = name[1]
+          },
+        }
+      }
+    })
+    var app2 = new Vue({
+      data: {
+        text: '元/RMB'
+      },
+    })
+    var app = new Vue({
+      el: '#demo',
+      data: {
+        text: '123,456,789',
+        package1: [
+          {
+            name: 'iphone',
+            price: 6999,
+            count: 2,
+          },
+          {
+            name: 'ipad',
+            price: 3600,
+            count: 2,
+          },
+        ],
+        package2: [
+          {
+            name: 'iphone',
+            price: 6999,
+            count: 6,
+          },
+          {
+            name: 'ipad',
+            price: 3600,
+            count: 2,
+          },
+        ],
+      },
+      computed: {
+        reverseText: function() {
+          return this.text.split(',').reverse().join(',')
+        },
+        prices: function () {
+          var prices = 0
+          for (var i = 0; i < this.package1.length; i++) {
+            prices += this.package1[i].price * this.package1[i].count
+          }
+          for (var i = 0; i < this.package2.length; i++) {
+            prices += this.package2[i].price * this.package2[i].count
+          }
+          return prices + ' / ' + app2.text
+        }
+      },
+    })
+  </script>
+  </body>
+</html>
