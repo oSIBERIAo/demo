@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="app">
+        {{msg}} <br>
+        {{msg.split(' ').reverse().join(' ')}} <br>
+        {{reverseText}} <br>
+        <br><br>
+        计算属性fullname1:
+        <br>
+        {{fullName1}}
+        <br><br>
+        watch监听器fullname:
+        <br>
+        {{fullName}}
+        <br><br><br>
+        firstName:<input type="text" name="" v-model="firstName">
+        <br>
+        secondName:<input type="text" name="" v-model="secondName">
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script type="text/javascript">
+    var app = new Vue({
+      el: "#app",
+      data: {
+        msg: "start learn Vue",
+        fullName: "",
+        firstName: "wu",
+        secondName: "xian",
+      },
+      computed: {
+        reverseText:function(){
+          return this.msg.split(' ').reverse().join(' ')
+        },
+        fullName1: function(){
+          return this.fullName = this.firstName + ' ' + this.secondName
+        },
+      },
+      // methods:{
+      //   fullName2: function(){
+      //     return this.fullName = this.firstName + ' ' + this.secondName
+      //   },
+      // },
+      watch: {
+        // 如果 `question` 发生改变，这个函数就会运行
+        firstName: function () {
+          this.fullName = this.firstName + ' ' + this.secondName
+          console.log("如果 `question` 发生改变，这个函数就会运行");
+        },
+        secondName: function () {
+          this.fullName = this.firstName + ' ' + this.secondName
+          console.log("如果 `question` 发生改变，这个函数就会运行");
+        }
+      },
+    })
+  </script>
+  </body>
+</html>
