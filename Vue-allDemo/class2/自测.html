@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>自测</title>
+    <style media="screen">
+      .transformRed{color: red;}
+    </style>
+  </head>
+  <body>
+    <div id="dataApp" v-on:>
+      <br>
+      v-text 渲染文本到页面:
+      <span v-text="text"></span>
+      <br>
+      <br>
+      v-html 渲染HTML到页面:
+      <span v-html="html"></span>
+      <br>
+      <br>
+      动态绑定属性（任意属性均可）:
+      <span v-text="text" v-bind:class="className" ></span>
+      <br>
+      <br>
+      绑定一个事件:
+      <button type="button" name="button" v-on:click = "count">{{countNum}}</button>
+      <br>
+      <br>
+      必须使用到过滤器:
+      {{date | formatDate}}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script type="text/javascript">
+      var plusData = function(value) {
+        return value < 10 ? '0'+ value : value
+      }
+      var app = new Vue({
+        el: "#dataApp",
+        data: {
+          date: new Date(),
+          text: "渲染文本到页面",
+          html: '<span>渲染HTML到页面</span>',
+          className: "transformRed",
+          countNum: 0,
+
+        },
+        methods:{
+          count:function (){
+            this.countNum += 1
+          },
+        },
+        filters: {
+          formatDate: function(value) {
+            var date = new Date(value)
+            var year = date.getFullYear()
+            var month = plusData(date.getMonth() + 1)
+            var day = plusData(date.getDate())
+            var hours = plusData(date.getHours())
+            var min = plusData(date.getMinutes())
+            var sec = plusData(date.getSeconds())
+
+            return year + '-' + month + '-' + day + '  ' + hours + ':' + min + ':' + sec
+          }
+        },
+        mounted: function(){
+          var _this = this
+          console.log(_this);
+          this.timer = setInterval(()=>{
+            _this.date = new Date()
+          }, 1000)
+        },
+        beforeDestroy:function() {
+          //如果定时器存在，清除定时器
+          if(this.timer){
+            clearInterval(this.timer)
+          }
+        },
+      })
+    </script>
+  </body>
+</html>
