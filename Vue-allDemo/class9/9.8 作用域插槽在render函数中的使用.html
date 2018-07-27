@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="app">
+    <my-component>
+      <template slot-scope="prop">
+        {{prop.text}}
+        {{prop.msg}}
+      </template>
+    </my-component><br>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script type="text/javascript">
+       Vue.component('my-component',{
+         props: [],
+         render: function(creatElement){
+           return creatElement('div', this.$scopedSlots.default({
+             text: '我是子组件传递过来的数据',
+             msg: "start learn Vue",
+           }))
+         }
+       })
+       var app = new Vue({
+         el: "#app",
+         data: {
+         },
+       })
+  </script>
+  </body>
+</html>

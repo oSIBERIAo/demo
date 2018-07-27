@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="app">
+      <child :level="level">
+        我是蜡笔小新
+      </child>
+    </div>
+    <template id="hdom">
+      <div>
+        <h1 v-if="level==1">
+           <slot></slot>
+        </h1>
+        <h2 v-if="level==2">
+           <slot></slot>
+        </h2>
+        <h3 v-if="level==3">
+           <slot></slot>
+        </h3>
+      </div>
+    </template>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script type="text/javascript">
+       Vue.component('child',{
+         props:['level'],
+         template: '#hdom'
+       })
+       var app = new Vue({
+         el: "#app",
+         data: {
+           msg: "start learn Vue",
+           level: 3,
+         },
+       })
+  </script>
+  </body>
+</html>

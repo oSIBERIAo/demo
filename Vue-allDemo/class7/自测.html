@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <style media="screen">
+    div{
+      border:1px solid red;
+      margin: 10px;
+    }
+  </style>
+  <body>
+    <!-- 分别写出如何全局注册和局部注册组件 -->
+    <div id="bpp">
+    </div>
+    <div id="app">
+      <top-components></top-components>
+      <top-components2></top-components2>
+      我是父组件 <br>
+      来自子组件的数据--{{fathernumber}}
+      <my-components msg="来自父组件的问候" @change="xxx"></my-components>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+  <!-- 全局注册 -->
+  <script type="text/javascript">
+      Vue.component('top-components', {
+        template: '<div>我是全局注册组件1</div>',
+        created: function(){
+          this.$root.bus.$on('lala', function(value){
+            alert('全局注册组件1已经接收---'+value)
+          })
+        },
+      })
+      Vue.component('top-components2', {
+        name:"top-components2",
+        data: function(){
+          return {
+            msg: "我是来自全局注册组件2的贺电"
+          }
+        },
+        template: '<div>我是全局注册组件2<button @click="send">点击我向全局注册组件1传数据</button></div>',
+        methods: {
+          send: function(){
+            this.$root.bus.$emit('lala', this.msg)
+          }
+        }
+      })
+      var bpp = new Vue({
+        el: "#bpp",
+      })
+  </script>
+
+  <!-- 局部注册 -->
+  <script type="text/javascript">
+       var app = new Vue({
+         el: "#app",
+         data: {
+           bus: new Vue,
+           fathernumber: 100,
+         },
+         components: {
+           'my-components': {
+             data: function(){
+               return {
+                 number: 100,
+               }
+             },
+             props: ['msg'],
+             template: '\
+               <div>局部注册的子组件： {{msg}}<br>\
+                 <button @click="add">加一</button>\
+                 {{number}}\
+               </div>',
+             methods: {
+               add: function() {
+                 this.number = this.number + 1
+                 this.$emit('change',this.number)
+               }
+             },
+           }
+         },
+         methods: {
+           xxx: function(value) {
+             this.fathernumber = value
+           }
+         },
+       })
+  </script>
+  </body>
+</html>

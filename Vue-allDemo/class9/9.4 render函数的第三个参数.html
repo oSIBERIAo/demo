@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="app">
+      <child>
+
+      </child>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script type="text/javascript">
+       Vue.component('child',{
+         render: function (creatElement){
+           return creatElement('div', [
+             creatElement('h1', '我是h1标题'),
+             creatElement('h6', '我是h6标题'),
+             creatElement('div', [
+               creatElement('h3', '我是div的div的h3标题'),            
+             ]),
+           ])
+         },
+       })
+       var app = new Vue({
+         el: "#app",
+         data: {
+           msg: "start learn Vue",
+           level: 3,
+         },
+       })
+  </script>
+  </body>
+</html>

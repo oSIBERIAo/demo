@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="app">
+      <my-component>
+         <p>第一句</p>
+         <p>第二句</p>
+         <h3 slot="header">我是标题</h3>
+         <h5 slot="footer">我是最后</h5>
+      </my-component>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script type="text/javascript">
+       Vue.component('my-component',{
+         render: function (creatElement){
+           // debugger
+           var header = this.$slots.header
+           var main = this.$slots.default
+           var footer = this.$slots.footer
+           return creatElement('div', [
+             creatElement('header', header),
+             creatElement('main', main),
+             creatElement('footer', footer),
+           ])
+         },
+       })
+       var app = new Vue({
+         el: "#app",
+         data: {
+           msg: "start learn Vue",
+           level: 3,
+         },
+       })
+  </script>
+  </body>
+</html>

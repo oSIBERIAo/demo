@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="app">
+      <child>
+
+      </child>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script type="text/javascript">
+       Vue.component('child',{
+         render: function (creatElement){
+           return creatElement({
+             template: '<div>开始学习VUE</div>'
+           }, {
+             class: {
+               foo: true,
+               baz: false,
+             },
+             style: {
+               color: 'red',
+               fontSize: '32px',
+             },
+             //正常的Html特性
+             attrs: {
+               id: 'foo',
+               src: 'http://baidu.com'
+             },
+             //用来写原生的Bom属性
+             domProps: {
+               innerHTML: '<span style="color:blue;fone-size: 64px">我是蓝色</span>'
+             }
+           })
+
+           // return creatElement({
+           //   template: '<div>start learn Vue</div>'
+           // })
+
+           // var domFun = function () {
+           //   return {
+           //     template: '<div>start learn Vue</div>'
+           //   }
+           // }
+           // return creatElement(domFun())
+         },
+       })
+       var app = new Vue({
+         el: "#app",
+         data: {
+           msg: "start learn Vue",
+           level: 3,
+         },
+       })
+  </script>
+  </body>
+</html>

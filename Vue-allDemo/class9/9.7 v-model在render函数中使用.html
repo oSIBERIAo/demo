@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="app">
+    <!-- <my-component :name="name" @input="showName"></my-component><br> -->
+    <my-component :name="name" v-model="name"></my-component><br>
+    {{name}}
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script type="text/javascript">
+       Vue.component('my-component',{
+         props: ['name'],
+         render: function(creatElement){
+           var self = this
+           console.log(this);
+           return creatElement('input', {
+             domProps: {
+               value: self.name,
+             },
+             on: {
+               input: function(event){
+                 self.$emit('input', event.target.value)
+               }
+             },
+           })
+         },
+         // template: '<div>我是一个组件</div>'
+       })
+       var app = new Vue({
+         el: "#app",
+         data: {
+           msg: "start learn Vue",
+           name: 'hahaha',
+         },
+         methods: {
+           showName: function(value){
+             this.name = value
+           }
+         }
+       })
+  </script>
+  </body>
+</html>

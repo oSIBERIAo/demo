@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="app">
+    <button type="button" name="button" @click="switchShow">点击切换</button>
+    {{show}}<br>
+    <my-component :show="show">  </my-component>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script type="text/javascript">
+       Vue.component('my-component',{
+         props: ['show'],
+         render: function(creatElement){
+           if (this.show) {
+             imgsrc = 'https://www.smallsticker.com/vuejs.png'
+           } else {
+             imgsrc = 'https://www.smallsticker.com/React-JS.sh-600x600.png'
+           }
+           return creatElement('img', {
+             attrs: {
+               src: imgsrc
+             }
+           })
+         },
+         // template: '<div>我是一个组件</div>'
+       })
+       var app = new Vue({
+         el: "#app",
+         data: {
+           msg: "start learn Vue",
+           show: false,
+         },
+         methods: {
+           switchShow: function(){
+             this.show = !this.show
+           }
+         }
+       })
+  </script>
+  </body>
+</html>

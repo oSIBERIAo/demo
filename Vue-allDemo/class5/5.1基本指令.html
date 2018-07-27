@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <style media="screen">
+    .border{
+      border: 3px solid red;
+      height: 30px;
+    }
+  </style>
+  <body>
+    <div id="app">
+        <!-- v-mode -->
+        <input type="text" name="" v-model="inputvalue"><br>
+        {{inputvalue}}<br>
+        <!-- v-for循环 -->
+        <li v-for="item in items">
+          {{ item.message }}
+        </li>
+        <!-- v-bind，v-on写出一个demo -->
+        <button type="button" name="button" :class="{border: border}" v-on:click="activeborder">v-bind，v-on的demo</button>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script type="text/javascript">
+    var app = new Vue({
+      el: "#app",
+      data: {
+        msg: "start learn Vue",
+        a: 123,
+        inputvalue: '双向绑定',
+        items: [
+          { message: 'Foo' },
+          { message: 'Bar' },
+          { message: 'Hai' }
+        ],
+        border: true,
+      },
+      methods: {
+        activeborder: function(){
+          this.border = !this.border
+        },
+      }
+    })
+  </script>
+  <script type="text/javascript">
+    /*
+    v-if,v-else,v-show,v-text,v-html,v-on,v-bind，v-once,v-cloak  
+    */
+  </script>
+  </body>
+</html>

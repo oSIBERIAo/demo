@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .isDisplay{
+        display: none;
+      }
+      .fontColor{
+        color: red;
+      }
+      .buttonColor{
+        background-color: green;
+      }
+      input{
+        width: 30vw;
+      }
+      .active{
+        background-color: black;
+        width: 30vw;
+        color: white;
+      }
+      .error{
+        border: 3px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- HTML中的输入框--v-model,请写出demo -->
+      <p>HTML中的输入框--v-model</p>
+      <input v-model="msg"><br>
+      {{msg}}<br>
+
+      <!-- HTML中的复选框框--v-model,请写出demo -->
+      <p>HTML中的复选框框--v-model</p>
+      <select v-model="selectmultiple" multiple>
+        <option value="选项一">选项一</option>
+        <option value="选项二">选项二</option>
+        <option value="选项三">选项三</option>
+      </select>
+      {{selectmultiple}}
+
+      <!-- HTML中的单选框--v-model,请写出demo -->
+      <p>HTML中的单选框--v-model</p>
+      <select v-model="selectsingle">
+        <option value="选项一">选项一</option>
+        <option value="选项二">选项二</option>
+        <option value="选项三">选项三</option>
+      </select>
+      {{selectsingle}}
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script type="text/javascript">
+       var app = new Vue({
+         el: "#app",
+         data: {
+           msg: "start learn Vue",
+           selectmultiple: [],
+           selectsingle: [],
+         },
+       })
+  </script>
+  </body>
+</html>

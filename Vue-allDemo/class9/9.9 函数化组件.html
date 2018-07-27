@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="app">
+    <my-component value="haha">
+    </my-component><br>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script type="text/javascript">
+       Vue.component('my-component',{
+         functional: true,
+         render: function(creatElement, context){
+           return creatElement('button', {
+             on: {
+               click:function(){
+                 console.log(context);
+                 console.log(context.parent);
+                 console.log(context.props.value);
+               },
+             }
+           },'点击我学习context')
+         }
+       })
+       var app = new Vue({
+         el: "#app",
+         data: {
+           msg: '我是父组件的内容',
+         },
+       })
+  </script>
+  </body>
+</html>
