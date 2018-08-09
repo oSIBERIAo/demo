@@ -193,7 +193,7 @@ kbd:hover > img {
   width: 16px;
   height: 16px;
   padding: 2px 2px 2px;
-  display: none;
+  /* display: none; */
   left: 23px;
   top: 17px;
   background: #ffffff;
