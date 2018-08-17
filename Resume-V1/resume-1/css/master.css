@@ -44,7 +44,18 @@ body {
   color: #444;
   font-weight: bold;
 }
+[data-x].offset {
+  transform: translateX(-50px);
+}
+[data-x] {
+  transform: translateX(0);
+  transition: all 2s;
+}
 .topNavBar > nav > ul > li:hover{
+  outline: 5px solid #ddd;
+  /* border-bottom: 5px solid #ddd; */
+}
+.topNavBar > nav > ul > .active{
   outline: 5px solid #ddd;
   /* border-bottom: 5px solid #ddd; */
 }
