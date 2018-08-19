@@ -75,4 +75,37 @@ for (let index = 0; index < aTags.length; index++) {
 
 
 
+
+// message
+
+
+
+
+document.querySelector('#messageBG').addEventListener('click', function (params) {
+    document.querySelector('#messageBG').children[0].classList.toggle("unactie")
+    document.querySelector('#messageBG').children[1].classList.toggle("unactie")
+    document.querySelector('#messageList').classList.toggle("unactie")
+    document.querySelector('#messageList').classList.toggle("offset")
+})
+messageList.addEventListener('mouseenter', function (e) {
+    fixedBody()
+})
+messageList.addEventListener('mouseleave', function (e) {
+    looseBody()
+})
+
+//滚动穿透工具函数
+function fixedBody() {
+    var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    document.body.style.cssText += 'position: fixed;top:-' + scrollTop + 'px;width: 100%;';
+}
+
+function looseBody() {
+    var body = document.body;
+    body.style.position = '';
+    var top = body.style.top;
+    document.body.scrollTop = document.documentElement.scrollTop = -parseInt(top);
+    body.style.top = '';
+}
+
 //
