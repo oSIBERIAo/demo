@@ -225,3 +225,89 @@ body {
   width: 20px;
   margin-left: 121px;
 }
+
+
+
+.message {
+  position: fixed;
+  height: 50px;
+  width: 62px;
+  background-color: #ffffff00;
+  bottom: 30px;
+  right: 30px;
+  cursor: pointer;
+  transition: all 2s;
+}
+.messageBG {
+  position: relative;
+  border-left: 9px solid #ffffff00;;
+  background-color: #444444;
+  display: inline-block;
+  height: 36px;
+  width: 44px;
+  right: 0px;
+  border-radius: 5px;
+  transition: all 0.5s;
+}
+.messageBG::before {
+  position: relative;
+  content: "";
+  width: 20px;
+  height: 0px;
+  display: block;
+  background-color: #ffffff00;
+  left: -18px;
+  border-radius: 3px;
+  border-top: 9px solid #444444;
+  border-bottom: 9px solid #ffffff00;
+  border-left: 9px solid #ffffff00;
+}
+.messageBG::after {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 44px;
+  border-radius: 3px;
+  background-color: transparent;
+  color: transparent;
+  box-shadow: 0px 0px 25px #b3b3b3;
+  z-index: -1;
+  left: -9px;
+  top: 8px;
+}
+.messageBG > #messageOpen {
+  margin: -6px auto;
+  margin-left: 2px;
+  position: absolute;
+}
+.messageBG > #messageClose {
+  margin: -7px;
+  left: 2px;
+  margin-left: 2px;
+  position: absolute;
+}
+.unactie {
+  /* display: none; */
+  opacity: 0;
+  /* visibility:hidden; */
+}
+
+.messageList {
+  position: fixed;
+  width: 360px;
+  height: 300px;
+  background-color: #fff;
+  bottom: 110px;
+  right: 47px;
+  border-radius: 11px;
+  box-shadow: 0 6px 100px 0 rgba(0,0,0,.35);
+  overflow: scroll;
+}
+
+[messageList].offset {
+  transform: translateY(50px);
+}
+[messageList] {
+  transform: translateY(0);
+  transition: all 1s;
+}
