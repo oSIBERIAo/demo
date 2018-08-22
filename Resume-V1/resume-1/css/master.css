@@ -305,8 +305,8 @@ body::-webkit-scrollbar {
   right: 47px;
   border-radius: 11px;
   box-shadow: 0 6px 100px 0 rgba(0,0,0,.35);
-  overflow: scroll;
   overflow-x: hidden;
+  overflow: hidden;
   /* overflow-y: hidden; */
 }
 .messageList::-webkit-scrollbar {
@@ -332,16 +332,33 @@ body::-webkit-scrollbar {
   font-family: Apercu,'PingFang SC','Microsoft YaHei',Arial,SimHei,sans-serif;
 }
 .messageList > ul {
-  height: 100%;
+  height: 85%;
+  overflow: scroll;
 }
 
-.messageList > div > input {
+.messageList > form > input {
   bottom: 0;
-  height: 40px;
+  height: 100%;
   width: 80%;
   position: sticky
   /* outline:none; */
 }
-.messageList > div > input:focus {
+.messageList > form > input:nth-child(1) {
+  display: none;
+}
+.messageList > form > input:nth-child(3) {
+  width: 50px;
+  outline: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+.messageList > form > input:focus {
   outline:none;
+}
+.messageSubmit {
+  position: sticky;
+  height: 15%;
+  width: 100%;
+  padding: 6px 10px;
+  box-shadow: 0 0 30px 10px #00000012;
 }
