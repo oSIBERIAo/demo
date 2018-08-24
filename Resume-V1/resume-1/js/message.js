@@ -1,39 +1,10 @@
 !function () {
-  var view = document.querySelector('#message')
-  var model = {
-    initAV: function() {
-      var { Query, User } = AV;
-      // AV.init('appId', 'appKey');
-
-      var APP_ID = 'gdp7vSppEKKm14mL6XkC2vGx-gzGzoHsz';
-      var APP_KEY = 'vlS29qhJ2EJBdjDyOzUciMHH';
-
-      AV.init({
-        appId: APP_ID,
-        appKey: APP_KEY
-      });
-    },
-    fetch: function () {
-      var message = AV.Object.createWithoutData('Message');
-      return message.fetch()
-    },
-    save: function (User, messageValue) {
-      let Message = AV.Object.extend('Message');
-      let message= new Message();
-      return message.save({
-        message: messageValue,
-        user: User,
-      })
-    },
-  }
-  var controller = {
-    view: null,
-    model: null,
-    messageList: null,
+  var view = View('#message').element
+  var model = Model({
+    resourceName: 'Message'
+  })
+  var controller = Controller({
     init: function (view, model) {
-      this.view = view
-      this.model = model
-
       this.messageList = view.querySelector('#messageList')
       this.messageBG = view.querySelector('#messageBG')
       this.form = view.querySelector('#messageSubmit')
@@ -48,11 +19,8 @@
         // console.log(response);
         for (var i = 0; i < response.length; i++) {
           let {user, message} = response[i]
-          // console.log("user", user);
-          // console.log("message", message);
           let li = document.createElement('li')
           li.innerHTML = message
-          // console.log('li',li);
           messageList.children[0].append(li)
         }
       }, function (error) {
@@ -74,7 +42,10 @@
         alert('留言不能为空哦')
         return
       }
-      model.save(User, messageValue).then( (object) => {
+      model.save({
+        message: messageValue,
+        user: User,
+      }).then( (object) => {
         let {user, message} = object.attributes
         let li = document.createElement('li')
         li.innerHTML = message
@@ -112,7 +83,7 @@
       document.body.scrollTop = document.documentElement.scrollTop = -parseInt(top);
       body.style.top = '';
     }
-  }
+  })
   controller.init(view, model)
 }.call()
 
