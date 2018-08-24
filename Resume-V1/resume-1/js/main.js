@@ -5,14 +5,10 @@ for (var i = 0; i < specialTags.length; i++) {
 setTimeout(function () {
   findClosest()
 }, 1000)
-window.onscroll = function (e) {
-    if (window.scrollY > 0) {
-        topNavBar.classList.add("topNavBarActive")
-    } else {
-        topNavBar.classList.remove("topNavBarActive")
-    }
+window.addEventListener('scroll', function (e) {
     findClosest()
-}
+})
+
 
 function findClosest() {
   //绝对值最近的 = minIndex
@@ -34,78 +30,17 @@ function findClosest() {
     a.parentNode.classList.add("active")
   }
 }
-function animate(time) {
-    requestAnimationFrame(animate);
-    TWEEN.update(time);
+
+//分类切换
+portfolioAll.onclick = function () {
+  portfolioBar.className = 'bar'
 }
-requestAnimationFrame(animate);
-
-
-var aTags = document.querySelectorAll('div.topNavBar > nav > ul > li > a')
-for (let index = 0; index < aTags.length; index++) {
-    const element = aTags[index];
-    element.onclick = function (e) {
-        e.preventDefault()
-        let a = e.currentTarget
-        let ahref = a.getAttribute('href')
-        let element = document.querySelector(ahref)
-        let h = element.getBoundingClientRect().y
-        let currentTop = window.scrollY
-
-        let top = element.offsetTop
-
-        let targetTop = top - 70
-        let s = Math.abs(targetTop - currentTop)
-        let time = s / 100 * 600
-        if (time > 1000) {
-            time = 1000
-        }
-        var coords = { x: 0, y: currentTop }; // Start at (0, 0)
-        var tween = new TWEEN.Tween(coords)
-            .to({ y: targetTop }, time)
-            .easing(TWEEN.Easing.Exponential.Out)
-            .onUpdate(function () {
-                addEventListener("scroll", function (params) {
-                })
-                window.scroll(0, coords.y)
-            })
-            .start();
-    }
+portfolioVue.onclick = function (){
+  portfolioBar.className = 'bar state-2'
+}
+portfolioJs.onclick = function () {
+  portfolioBar.className = 'bar state-3'
 }
 
-
-
-
-// message
-
-
-
-
-document.querySelector('#messageBG').addEventListener('click', function (params) {
-    document.querySelector('#messageBG').children[0].classList.toggle("unactie")
-    document.querySelector('#messageBG').children[1].classList.toggle("unactie")
-    document.querySelector('#messageList').classList.toggle("unactie")
-    document.querySelector('#messageList').classList.toggle("offset")
-})
-messageList.addEventListener('mouseenter', function (e) {
-    fixedBody()
-})
-messageList.addEventListener('mouseleave', function (e) {
-    looseBody()
-})
-
-//滚动穿透工具函数
-function fixedBody() {
-    var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-    document.body.style.cssText += 'position: fixed;top:-' + scrollTop + 'px;width: 100%;';
-}
-
-function looseBody() {
-    var body = document.body;
-    body.style.position = '';
-    var top = body.style.top;
-    document.body.scrollTop = document.documentElement.scrollTop = -parseInt(top);
-    body.style.top = '';
-}
 
 //
