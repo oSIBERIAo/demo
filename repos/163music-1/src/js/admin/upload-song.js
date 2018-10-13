@@ -74,6 +74,8 @@ window.x = 'open'
                  this.model.data.status = 'open'
                  var domain = up.getOption('domain');
                  var response = JSON.parse(info.response)
+                 console.log(response);
+                 
                  var sourceLink = 'http://' + domain + '/' + encodeURIComponent(response.key)
                  console.log('domain', domain);
                  console.log('response', response);
